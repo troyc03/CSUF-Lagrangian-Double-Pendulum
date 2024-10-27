@@ -1,10 +1,10 @@
 # Lagrangian-Double-Pendulum-Redux-II
 
 ## Overview
-The Lagrangian Double Pendulum Redux II is a simulation tool designed to explore the dynamics of a double pendulum using both manual calculations based on calculus of variations and numerical methods for solving differential equations. This project aims to demonstrate chaotic behavior and simple harmonic motion in the context of a double pendulum system.
+The Lagrangian Double Pendulum is a simulation tool designed to explore the dynamics of a double pendulum using both manual calculations based on calculus of variations and numerical methods for solving differential equations. This project aims to demonstrate chaotic behavior and simple harmonic motion in the context of a double pendulum system.
 
 ## Install Instructions
-To set up the Lagrangian Double Pendulum Redux II using Anaconda, follow these steps:
+To set up this project using Anaconda, follow these steps:
 
 1. **Install Anaconda**: If you haven't already, download and install Anaconda from [anaconda.com](https://www.anaconda.com/products/distribution).
 
