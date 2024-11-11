@@ -45,7 +45,8 @@ class NumericalMethods():
 
     def solve_ode(self, f, y0, method='runge_kutta'):
         """
-        Use any of the given methods to solve  manually.
+        Solves the ODE using the specified method.
+        Available methods: 'euler', 'runge_kutta', 'odeint' (SciPy).
         """
         if method == 'euler':
             return self.euler_method(f, y0)
