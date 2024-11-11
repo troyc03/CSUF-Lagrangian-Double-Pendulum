@@ -28,10 +28,17 @@ This lab explores the motion of a double pendulum using the principles of Lagran
 ## Installation
 
 1. **Install Anaconda**: Download and install [Anaconda](https://www.anaconda.com/products/distribution) to manage dependencies and environments.
-2. **Create a New Environment**:
+2. **Install The Required Libraries**:
+   
+   ```bash
+   conda install numpy scipy matplotlib
+3. **Create a New Environment**:
    ```bash
    conda create -n double_pendulum python=3.9
-
+4. **Activate the New Environment**
+   ```bash
+   conda activate double_pendulum
+   
 ## File Structure
 
 - **`main.py`**: The entry point for running the simulation, where you set initial conditions and execute the full simulation (solving the differential equations, visualizing the motion, logging data, etc.).
