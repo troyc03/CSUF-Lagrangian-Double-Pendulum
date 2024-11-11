@@ -47,7 +47,7 @@ This lab can be extended to model variations of the double pendulum, such as:
 
 ## Kanban Board (WIP)
 
-### ![image](https://github.com/user-attachments/assets/84fe0ce8-04b4-4bfb-b822-072d7acb52ce)
+# ![image](https://github.com/user-attachments/assets/84fe0ce8-04b4-4bfb-b822-072d7acb52ce)
 
 
 
