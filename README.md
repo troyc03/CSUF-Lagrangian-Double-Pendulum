@@ -49,9 +49,9 @@ This lab can be extended to model variations of the double pendulum, such as:
 
 # ![image](https://github.com/user-attachments/assets/e773f4b9-7f82-4d60-b4f0-7ef51b11f76f)
 
-- [Kanban Sprint Schedule](https://docs.google.com/document/d/1XsIzqEAN1lMrPXOtpPKfbxwXxCBSAEgDXUgwJkkzNoU/edit?tab=t.0)
-- [Kanban User Stories/Requirements Models](https://docs.google.com/document/d/1SGqSKioedVcLIY1T7fengTqAkcT4FvSXmw4P1XDdrbs/edit?tab=t.0)
-- [Kanban Task List (All tasks listed will be added to the Kanban Board weekly)](https://docs.google.com/document/d/1vBFQM8tplh93Y_LbmWPhZ9SYO8kH2StDEvxj4FI_ibQ/edit?tab=t.0)
+* [Kanban Sprint Schedule](https://docs.google.com/document/d/1XsIzqEAN1lMrPXOtpPKfbxwXxCBSAEgDXUgwJkkzNoU/edit?tab=t.0)
+* [Kanban User Stories/Requirements Models](https://docs.google.com/document/d/1SGqSKioedVcLIY1T7fengTqAkcT4FvSXmw4P1XDdrbs/edit?tab=t.0)
+* [Kanban Task List (All tasks listed will be added to the Kanban Board weekly)](https://docs.google.com/document/d/1vBFQM8tplh93Y_LbmWPhZ9SYO8kH2StDEvxj4FI_ibQ/edit?tab=t.0)
 
 
 ## Diagrams
