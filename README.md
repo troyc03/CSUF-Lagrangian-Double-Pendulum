@@ -1,4 +1,3 @@
-
 # Lagrangian Double Pendulum Lab
 
 This lab explores the motion of a double pendulum using the principles of Lagrangian mechanics, calculus of variations, differential equations, and numerical analysis. The simulation models the chaotic dynamics of the double pendulum system by solving the governing equations both analytically and numerically.
@@ -12,6 +11,7 @@ This lab explores the motion of a double pendulum using the principles of Lagran
 ## Tools and Technologies
 
 - **Python**: Main programming language used for this project.
+- **MATLAB**: Used for symbolic computation, numerical integration (ODE solvers), and advanced visualizations.
 - **Anaconda**: Environment management and package distribution, allowing for easy setup and dependency management.
 - **Spyder**: Integrated development environment (IDE) for Python, specifically useful for scientific and engineering computing.
 
@@ -25,37 +25,150 @@ This lab explores the motion of a double pendulum using the principles of Lagran
 
 - **Numerical Analysis Techniques**: Techniques such as the Euler method and Runge-Kutta methods will be employed to approximate the system's solutions for visualization and data logging purposes.
 
+- **MATLAB Integration**: MATLAB will be used for symbolic math, solving differential equations with built-in solvers, and generating visualizations of the pendulum’s motion for comparison.
+
 ## Installation
 
 1. **Install Anaconda**: Download and install [Anaconda](https://www.anaconda.com/products/distribution) to manage dependencies and environments.
-2. **Install The Required Libraries**:
-   
-   ```bash
-   conda install numpy scipy matplotlib
-3. **Create a New Environment**:
+2. **Create a New Environment**:
    ```bash
    conda create -n double_pendulum python=3.9
-4. **Activate the New Environment**
+3. Activate the Environment:
    ```bash
    conda activate double_pendulum
-   
-## File Structure
-
-- **`main.py`**: The entry point for running the simulation, where you set initial conditions and execute the full simulation (solving the differential equations, visualizing the motion, logging data, etc.).
-- **`pendulum.py`**: Contains the core model of the double pendulum, including the equations of motion derived from Lagrangian mechanics and methods to compute the pendulum's state.
-- **`numerical_methods.py`**: Implements numerical methods like the Euler method and Runge-Kutta methods to solve the differential equations.
-- **`test.py`**: Contains test cases for verifying the correctness of the system's equations, numerical methods, and integration results.
-- **`visualization.py`**: Handles rendering the pendulum’s motion using graphical libraries like Matplotlib.
-- **`data_logger.py`**: Manages logging and exporting simulation data such as position and velocity over time into a CSV file for further analysis.
+4. Install Required Libraries:
+   ```bash
+      conda install numpy matplotlib scipy
+5. Install MATLAB Engine API for Python (for MATLAB integration):
+   ```bash
+   pip install matlab.engine
+6. Open Spyder: Launch Spyder from the Anaconda Navigator or by running (You can use Jupyter or VSCode if you want to):  
+   ```bash
+   spyder
 
 ## Future Extensions
-
 This lab can be extended to model variations of the double pendulum, such as:
-
 - Introducing external forces.
 - Modeling with different damping or friction effects.
 - Exploring stability and chaos in similar systems.
+- This lab combines theoretical derivation and numerical computing to deepen understanding of chaotic systems, making it ideal for students interested in applied physics, engineering, and computational mathematics.
 
-This lab combines theoretical derivation and numerical computing to deepen understanding of chaotic systems, making it ideal for students interested in applied physics, engineering, and computational mathematics.
+## Diagrams
 
+Use Case Diagram
+```bash
++-----------------------------------+
+|          Double Pendulum          |
+|        Simulation System          |
++-----------------------------------+
+|                                   |
+|  +-----------------------------+  |
+|  |      User Interface          |  |
+|  +-----------------------------+  |
+|           /           \           |
+|          /             \          |
+|   +-------------+  +-------------+ |
+|   | Set Initial |  | View Motion | |
+|   | Conditions  |  |   Graph     | |
+|   +-------------+  +-------------+ |
+|                                   |
++-----------------------------------+
 
+UML Class Diagram
+```bash
++----------------------------+
+|        DoublePendulum       |
++----------------------------+
+| - mass1: float              |
+| - mass2: float              |
+| - length1: float            |
+| - length2: float            |
+| - angle1: float             |
+| - angle2: float             |
+| - velocity1: float          |
+| - velocity2: float          |
++----------------------------+
+| + equations_of_motion()     |
+| + compute_state()           |
++----------------------------+
+
+        | (has)
+        |
+        V
+
++----------------------------+
+|     NumericalMethods       |
++----------------------------+
+| + euler_method()           |
+| + runge_kutta()            |
++----------------------------+
+
+UML Sequence Diagram
+```bash
+User              System                NumericalMethods
+ |                   |                           |
+ |--- Set Conditions ->|                           |
+ |                   |--- equations_of_motion() ->|
+ |                   |<-- return equations       |
+ |--- Start Simulation ->|                       |
+ |                   |--- compute_state()        |
+ |                   |<-- return new state       |
+ |--- Visualize Motion ->|                       |
+ |                   |--- plot_motion()          |
+
+```bash
++-----------------------+
+|  Set Initial Conditions|
++-----------------------+
+          |
+          V
++-----------------------+
+|  Solve Differential   |
+|     Equations         |
++-----------------------+
+          |
+          V
++-----------------------+
+|  Visualize Motion     |
++-----------------------+
+          |
+          V
++-----------------------+
+|  Export Data          |
++-----------------------+
+
+UML Activity Diagram
+```bash
++-----------------------+
+|  Set Initial Conditions|
++-----------------------+
+          |
+          V
++-----------------------+
+|  Solve Differential   |
+|     Equations         |
++-----------------------+
+          |
+          V
++-----------------------+
+|  Visualize Motion     |
++-----------------------+
+          |
+          V
++-----------------------+
+|  Export Data          |
++-----------------------+
+
+UML Swimlane Diagram
+```bash
++-------------------------------------------+
+|            Double Pendulum Simulation    |
++-------------------------------------------+
+|   User   |    System    | NumericalMethods|
++-------------------------------------------+
+| Set Initial Conditions ->                 |
+|               |                           |
+| Start Simulation ->                       |
+|               |                           |
+| Visualize Motion ->                       |
++-------------------------------------------+
