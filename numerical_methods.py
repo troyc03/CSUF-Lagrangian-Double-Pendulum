@@ -13,13 +13,4 @@ from scipy.integrate import odeint
 
 class NumericalMethods():
     #Import numerical methods here.
-    def __init__(self):
-        pass
-    def euler_method():
-        pass
-    def runge_kutta():
-        pass
-    def solve_odes():
-        pass
-
     pass
