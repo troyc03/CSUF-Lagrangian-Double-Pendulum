@@ -45,6 +45,11 @@ This lab can be extended to model variations of the double pendulum, such as:
 - Exploring stability and chaos in similar systems.
 - This lab combines theoretical derivation and numerical computing to deepen understanding of chaotic systems, making it ideal for students interested in applied physics, engineering, and computational mathematics.
 
+## Kanban Board (WIP)
+
+![image](https://github.com/user-attachments/assets/6ea38782-162b-48e9-a1e5-23e5af103ef2)
+
+
 ## Diagrams
 
 Use Case Diagram
