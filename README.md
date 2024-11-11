@@ -49,8 +49,7 @@ This lab can be extended to model variations of the double pendulum, such as:
 
 # ![image](https://github.com/user-attachments/assets/e773f4b9-7f82-4d60-b4f0-7ef51b11f76f)
 
-
-
+[Kanban Sprint Schedule](https://docs.google.com/document/d/1XsIzqEAN1lMrPXOtpPKfbxwXxCBSAEgDXUgwJkkzNoU/edit?tab=t.0)
 
 
 ## Diagrams
