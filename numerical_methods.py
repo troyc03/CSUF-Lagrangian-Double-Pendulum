@@ -43,14 +43,6 @@ class NumericalMethods():
            y[i] = y[i-1] + 1/6 * (k1 + 2*k2 + 2*k3 + k4) 
         return t, y
 
-    def solve_ode_manually(self, f, y0):
-        """
-        Uses SciPy's odeint function to solve ODEs.
-        """
-        t = np.arange(0, 10, self.dt)
-        y = odeint(f, y0, t)
-        return t, y
-
     def solve_ode(self, f, y0, method='runge_kutta'):
         """
         Use any of the given methods to solve  manually.
@@ -59,6 +51,8 @@ class NumericalMethods():
             return self.euler_method(f, y0)
         elif method == 'runge_kutta':
             return self.runge_kutta(f, y0)
+        elif method == 'odeint':
+            return odeint(f, y0)
         else:
             raise ValueError('ERROR: Unsupported method.')
     
