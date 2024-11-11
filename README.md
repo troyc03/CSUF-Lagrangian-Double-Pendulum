@@ -25,24 +25,16 @@ This lab explores the motion of a double pendulum using the principles of Lagran
 
 - **Numerical Analysis Techniques**: Techniques such as the Euler method and Runge-Kutta methods will be employed to approximate the system's solutions for visualization and data logging purposes.
 
-- **MATLAB Integration**: MATLAB will be used for symbolic math, solving differential equations with built-in solvers, and generating visualizations of the pendulum’s motion for comparison.
+- **MATLAB Integration**: MATLAB will be used for symbolic math, solving differential equations with built-in solvers, and generating visualizations of the pendulum’s motion for comparison (NOTE: If you cannot properly integrate MATLAB with your Python IDE, then this requirement is optional. You can still run the simulation in Anaconda)
 
 ## Installation
 
 1. **Install Anaconda**: Download and install [Anaconda](https://www.anaconda.com/products/distribution) to manage dependencies and environments.
-2. **Create a New Environment**:
+2. **Install MATLAB**: Download and install [MATLAB](https://www.mathworks.com/downloads/) to compare numerical calculations.
+3. **Install the following libraries**: You will need these in order for the simulation to properly work on your laptop.
    ```bash
-   conda create -n double_pendulum python=3.9
-3. Activate the Environment:
-   ```bash
-   conda activate double_pendulum
-4. Install Required Libraries:
-   ```bash
-      conda install numpy matplotlib scipy
-5. Install MATLAB Engine API for Python (for MATLAB integration):
-   ```bash
-   pip install matlab.engine
-6. Open Spyder: Launch Spyder from the Anaconda Navigator or by running (You can use Jupyter or VSCode if you want to):  
+   conda install numpy scipy matplotlib
+4. **Open Spyder**: Launch Spyder from the Anaconda Navigator or by running (You can use Jupyter or VSCode if you want to):  
    ```bash
    spyder
 
