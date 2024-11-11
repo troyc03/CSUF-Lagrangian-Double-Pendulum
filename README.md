@@ -227,3 +227,9 @@ UML Swimlane Diagram
 -  Implement additional numerical methods such as adaptive Runge-Kutta.
 -  Refactor code for more efficient data logging.
 -  Explore methods to optimize visualization for real-time analysis.
+
+#### Credits
+Troy Chin (Kanban Team Leader/Head DevOps Coordinator)
+
+###### License
+[https://www.gnu.org/licenses/gpl-3.0.en.html](https://www.gnu.org/licenses/gpl-3.0.en.html)
