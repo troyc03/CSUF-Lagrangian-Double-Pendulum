@@ -231,5 +231,7 @@ UML Swimlane Diagram
 #### Credits
 Troy Chin (Kanban Team Leader/Head DevOps Coordinator)
 
-###### License
+##### License
+
+This project is free for anyone to access and distribute to other users.
 [https://www.gnu.org/licenses/gpl-3.0.en.html](https://www.gnu.org/licenses/gpl-3.0.en.html)
