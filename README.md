@@ -30,7 +30,7 @@ This lab explores the motion of a double pendulum using the principles of Lagran
 ## Installation
 
 1. **Install Anaconda**: Download and install [Anaconda](https://www.anaconda.com/products/distribution) to manage dependencies and environments.
-2. **Install MATLAB**: Download and install [MATLAB](https://www.mathworks.com/downloads/) to compare numerical calculations.
+2. **Install MATLAB**: Download and install [MATLAB](https://www.mathworks.com/products/matlab.html) to compare numerical calculations.
 3. **Install the following libraries**: You will need these in order for the simulation to properly work on your laptop.
    ```bash
    conda install numpy scipy matplotlib
