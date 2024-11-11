@@ -1,5 +1,15 @@
 # Lagrangian Double Pendulum Lab
 
+## Table of Contents
+- [Project Description](#project-description)
+- [Tools and Technologies](#tools-and-technologies)
+- [Key Concepts](#key-concepts)
+- [Installation](#installation)
+- [Diagrams](#diagrams)
+- [Known Issues](#known-issues)
+- [To-Do Items](#to-do-items)
+
+## Project Description
 This lab explores the motion of a double pendulum using the principles of Lagrangian mechanics, calculus of variations, differential equations, and numerical analysis. The simulation models the chaotic dynamics of the double pendulum system by solving the governing equations both analytically and numerically.
 
 ## Project Objectives
@@ -37,13 +47,6 @@ This lab explores the motion of a double pendulum using the principles of Lagran
 4. **Open Spyder**: Launch Spyder from the Anaconda Navigator or by running (You can use Jupyter or VSCode if you want to):  
    ```bash
    spyder
-
-## Future Extensions
-This lab can be extended to model variations of the double pendulum, such as:
-- Introducing external forces.
-- Modeling with different damping or friction effects.
-- Exploring stability and chaos in similar systems.
-- This lab combines theoretical derivation and numerical computing to deepen understanding of chaotic systems, making it ideal for students interested in applied physics, engineering, and computational mathematics.
 
 ## Kanban Board (WIP)
 
@@ -211,3 +214,15 @@ UML Swimlane Diagram
 +-------------------------------------------------------------+
 
 ```
+
+## Known Issues
+
+- **MATLAB Integration**: Some users may experience compatibility issues when integrating MATLAB and Python. This is optional but recommended for comparison.
+- **Chaotic Instability**: The nature of the double pendulum system leads to highly unstable and divergent results if precise initial conditions are not maintained.
+
+## To-Do Items
+
+- Extend the simulation to include damping or friction effects.
+-  Implement additional numerical methods such as adaptive Runge-Kutta.
+-  Refactor code for more efficient data logging.
+-  Explore methods to optimize visualization for real-time analysis.
