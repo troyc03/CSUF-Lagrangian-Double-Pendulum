@@ -23,24 +23,31 @@ class DoublePendulum():
         self.velocity2 = velocity2
         self.g 
         
-    def initial_conditions(self, mass1, mass2, length1, length2, angle1, angle2, velocity1, velocity2):
-        self.mass1 = mass1
-        self.mass2 = mass2
-        self.length1 = length1
-        self.length2 = length2
+    def initial_conditions(self, angle1, angle2, velocity1, velocity2):
         self.angle1 = angle1
         self.angle2 = angle2
         self.velocity1 = velocity1
         self.velocity2 = velocity2
 
-    def equations_of_motion():
+    def equations_of_motion(self):
         """
         Compute the equations of motion for the double pendulum.
         """
-        pass
+        theta1_dot = self.velocity1
+        theta2_dot = self.velocity2
+        theta_ddot1 = 0
+        theta_ddot2 = 0
+        return [theta1_dot, theta2_dot, theta_ddot1, theta_ddot2]
+
     
     def Lagrangian(self):
-        pass
+        """
+        Return Lagrangian function of the double pendulum.
+        """
+        T = self.kinetic_energy()
+        V = self.potential_energy()
+        L = T - V
+        return L
     
     def compute_state(self, t):
         pass
@@ -50,7 +57,7 @@ class DoublePendulum():
     
     def potential_energy(self):
         pass
-    
+
     def total_energy(self):
         """
         Calculate total energy of the system.

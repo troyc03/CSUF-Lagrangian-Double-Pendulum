@@ -30,7 +30,7 @@ class NumericalMethods():
     
     def runge_kutta(self, f, y0):
         """
-        Compute Runge-Kutta Method of Order 4 for solving ODEs.
+        Compute Runge-Kutta Method of Order Four for solving ODEs.
         """
         t = np.arange(0, 10, self.dt)
         y = np.zeros((len(t), len(y0)))
@@ -42,6 +42,18 @@ class NumericalMethods():
            k4 = self.dt * f(t[i-1] + self.dt, y[i-1] + k3)
            y[i] = y[i-1] + 1/6 * (k1 + 2*k2 + 2*k3 + k4) 
         return t, y
+
+    def solve_ode(self, f, y0, t, method='runge_kutta'):
+        if method == 'euler':
+            return self.euler_method(f, y0)
+        elif method == 'runge_kutta':
+            return self.runge_kutta(f, y0)
+        else:
+            raise ValueError('ERROR: Unsupported method.')
+    
+
+
+
     
     
     pass
