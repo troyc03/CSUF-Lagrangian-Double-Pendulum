@@ -4,6 +4,7 @@
 - [Project Description](#project-description)
 - [Tools and Technologies](#tools-and-technologies)
 - [Key Concepts](#key-concepts)
+- [Kanban Board](#kanban-board)
 - [Installation](#installation)
 - [Diagrams](#diagrams)
 - [Known Issues](#known-issues)
