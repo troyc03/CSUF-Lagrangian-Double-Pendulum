@@ -73,6 +73,7 @@ Use Case Diagram
 |   +-------------+  +-------------+ |
 |                                   |
 +-----------------------------------+
+```
 
 UML Class Diagram
 ```bash
@@ -102,6 +103,7 @@ UML Class Diagram
 | + euler_method()           |
 | + runge_kutta()            |
 +----------------------------+
+```
 
 UML Sequence Diagram
 ```bash
@@ -115,6 +117,7 @@ User              System                NumericalMethods
  |                   |<-- return new state       |
  |--- Visualize Motion ->|                       |
  |                   |--- plot_motion()          |
+```
 
 ```bash
 +-----------------------+
@@ -136,6 +139,7 @@ User              System                NumericalMethods
 +-----------------------+
 |  Export Data          |
 +-----------------------+
+```
 
 UML Activity Diagram
 ```bash
@@ -158,6 +162,7 @@ UML Activity Diagram
 +-----------------------+
 |  Export Data          |
 +-----------------------+
+```
 
 UML Swimlane Diagram
 ```bash
@@ -172,3 +177,4 @@ UML Swimlane Diagram
 |               |                           |
 | Visualize Motion ->                       |
 +-------------------------------------------+
+```
