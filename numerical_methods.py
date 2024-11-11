@@ -6,11 +6,42 @@ Version: 1.0
 Description: This script contains various numerical methods used for this lab.
 """
 
+# PLEASE make sure to compute manual calculations before writing this program.
+
 import numpy as np
-import scipy.integrate as integrate
-import scipy.misc as misc
 from scipy.integrate import odeint
 
 class NumericalMethods():
     #Import numerical methods here.
+    
+    def __init__(self, dt):
+        self.dt = dt # Time step
+        
+    def euler_method(self, f, y0):
+        """
+        Compute Euler's method for solving ODEs.
+        """
+        t = np.arange(0, 10, self.dt)
+        y = np.zeros(len(t), len(y0))
+        y[0] = y0
+        for i in range(1, len(t)):
+            y[i] = y[i-1] + self.dt * f(t[i-1], y[i-1])
+        return t, y
+    
+    def runge_kutta(self, f, y0):
+        """
+        Compute Runge-Kutta Method of Order 4 for solving ODEs.
+        """
+        t = np.arange(0, 10, self.dt)
+        y = np.zeros((len(t), len(y0)))
+        y[0] = y0
+        for i in range(1, len(t)):
+           k1 = self.dt * f(t[i-1], y[i-1])
+           k2 = self.dt * f(t[i-1] + self.dt / 2, y[i-1] + k1 / 2)
+           k3 = self.dt * f(t[i-1] + self.dt / 2, y[i-1] + k2 / 2)
+           k4 = self.dt * f(t[i-1] + self.dt, y[i-1] + k3)
+           y[i] = y[i-1] + 1/6 * (k1 + 2*k2 + 2*k3 + k4) 
+        return t, y
+    
+    
     pass
