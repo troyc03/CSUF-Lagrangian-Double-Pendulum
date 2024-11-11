@@ -88,6 +88,7 @@ UML Class Diagram
 | - velocity2: float          |
 +----------------------------+
 | + equations_of_motion()     |
+| + Lagrangian()              |
 | + compute_state()           |
 +----------------------------+
 
@@ -100,6 +101,7 @@ UML Class Diagram
 +----------------------------+
 | + euler_method()           |
 | + runge_kutta()            |
+| + solve_ode()              |
 +----------------------------+
 ```
 

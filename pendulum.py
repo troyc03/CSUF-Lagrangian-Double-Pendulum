@@ -7,6 +7,23 @@ Description: This script contains the attributes for the double pendulum.
 
 """
 
-class Pendulum():
+class DoublePendulum():
     # Import class attributes here.
-    pass
+    def __init__(self, mass1, mass2, length1, length2, angle1, angle2, velocity1, velocity2):
+        self.mass1 = mass1
+        self.mass2 = mass2
+        self.length1 = length1
+        self.length2 = length2
+        self.angle1 = angle1
+        self.angle2 = angle2
+        self.velocity1 = velocity1
+        self.velocity2 = velocity2
+
+    def Lagrangian():
+        pass
+
+    def equations_of_motion():
+        pass
+
+    def compute_state():
+        pass

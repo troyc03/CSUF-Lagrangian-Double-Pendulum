@@ -11,4 +11,13 @@ import scipy.integrate as integrate
 import scipy.misc as misc
 from scipy.integrate import odeint
 
-#Import numerical methods here.
+class NumericalMethods():
+    #Import numerical methods here.
+    def euler_method():
+        pass
+    def runge_kutta():
+        pass
+    def solve_odes():
+        pass
+
+    pass

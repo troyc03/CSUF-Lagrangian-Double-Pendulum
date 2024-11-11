@@ -11,3 +11,5 @@ import matplotlib.pyplot as plt
 from matplotlib import animation
 
 #Import any models here.
+class Visualization():
+    pass
