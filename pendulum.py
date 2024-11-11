@@ -21,7 +21,7 @@ class DoublePendulum():
         self.angle2 = angle2
         self.velocity1 = velocity1
         self.velocity2 = velocity2
-        self.g 
+        self.g - 9.81
         
     def initial_conditions(self, angle1, angle2, velocity1, velocity2):
         self.angle1 = angle1
