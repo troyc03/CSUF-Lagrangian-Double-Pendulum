@@ -79,32 +79,43 @@ Use Case Diagram
 UML Class Diagram
 ```bash
 +----------------------------+
-|        DoublePendulum       |
+|        DoublePendulum      |
 +----------------------------+
-| - mass1: float              |
-| - mass2: float              |
-| - length1: float            |
-| - length2: float            |
-| - angle1: float             |
-| - angle2: float             |
-| - velocity1: float          |
-| - velocity2: float          |
+| - mass1: float             |
+| - mass2: float             |
+| - length1: float           |
+| - length2: float           |
+| - angle1: float            |
+| - angle2: float            |
+| - velocity1: float         |
+| - velocity2: float         |
+| - g: float                 |  <- gravity
 +----------------------------+
-| + equations_of_motion()     |
-| + Lagrangian()              |
-| + compute_state()           |
+| + __init__()               |
+| + set_initial_conditions() |
+| + equations_of_motion()    |
+| + Lagrangian()             |
+| + compute_state(t)         |
+| + calculate_kinetic_energy()|
+| + calculate_potential_energy()|
+| + calculate_total_energy() |
+| + reset()                  |
 +----------------------------+
 
-        | (has)
+        | (uses)
         |
         V
 
 +----------------------------+
 |     NumericalMethods       |
 +----------------------------+
+| - dt: float                |  <- time step
++----------------------------+
 | + euler_method()           |
 | + runge_kutta()            |
-| + solve_ode()              |
+| + solve_ode(ode, init)     |
+| + adaptive_runge_kutta()   |
+| + midpoint_method()        |
 +----------------------------+
 ```
 
@@ -112,14 +123,24 @@ UML Sequence Diagram
 ```bash
 User              System                NumericalMethods
  |                   |                           |
- |--- Set Conditions ->|                           |
+ |--- Set Initial Conditions ->                 |
+ |                   |--- set_initial_conditions() |
+ |                   |<-- Return success        |
+ |--- Start Simulation ->                       |
  |                   |--- equations_of_motion() ->|
- |                   |<-- return equations       |
- |--- Start Simulation ->|                       |
- |                   |--- compute_state()        |
- |                   |<-- return new state       |
- |--- Visualize Motion ->|                       |
- |                   |--- plot_motion()          |
+ |                   |<-- Differential eqns     |
+ |                   |--- runge_kutta()         |
+ |                   |--- calculate_total_energy()|
+ |                   |<-- New state, energy     |
+ |                   |--- log_data()            |
+ |                   |                           |
+ |--- Visualize Motion ->                       |
+ |                   |--- plot_motion()         |
+ |                   |<-- Display graph         |
+ |                   |                           |
+ |--- Export Data ->                            |
+ |                   |--- save_to_csv()         |
+ |                   |<-- CSV export complete   |
 ```
 
 ```bash
@@ -131,17 +152,20 @@ User              System                NumericalMethods
 +-----------------------+
 |  Solve Differential   |
 |     Equations         |
+| - Define ODEs         |
+| - Apply Runge-Kutta   |
+| - Calculate Energy    |
 +-----------------------+
           |
           V
 +-----------------------+
-|  Visualize Motion     |
+|  Log and Visualize    |
+|     Simulation        |
+| - Plot motion         |
+| - Save CSV            |
+| - Calculate Total Energy |
 +-----------------------+
-          |
-          V
-+-----------------------+
-|  Export Data          |
-+-----------------------+
+
 ```
 
 UML Activity Diagram
@@ -154,30 +178,36 @@ UML Activity Diagram
 +-----------------------+
 |  Solve Differential   |
 |     Equations         |
+| - Define ODEs         |
+| - Apply Runge-Kutta   |
+| - Calculate Energy    |
 +-----------------------+
           |
           V
 +-----------------------+
-|  Visualize Motion     |
+|  Log and Visualize    |
+|     Simulation        |
+| - Plot motion         |
+| - Save CSV            |
+| - Calculate Total Energy |
 +-----------------------+
-          |
-          V
-+-----------------------+
-|  Export Data          |
-+-----------------------+
+
 ```
 
 UML Swimlane Diagram
 ```bash
-+-------------------------------------------+
-|            Double Pendulum Simulation    |
-+-------------------------------------------+
-|   User   |    System    | NumericalMethods|
-+-------------------------------------------+
-| Set Initial Conditions ->                 |
-|               |                           |
-| Start Simulation ->                       |
-|               |                           |
-| Visualize Motion ->                       |
-+-------------------------------------------+
++-------------------------------------------------------------+
+|            Double Pendulum Simulation                       |
++-------------------------------------------------------------+
+|   User        |    System               | NumericalMethods  |
++-------------------------------------------------------------+
+| Set Initial   |                         |                   |
+| Conditions -> | set_initial_conditions()|                   |
+|               | Compute ODEs ->         | Euler/Runge-Kutta |
+|               | Update State            |                   |
+|               | calculate_total_energy()|                   |
+|               | Visualize Motion        |                   |
+| Export Data ->| save_to_csv()           |                   |
++-------------------------------------------------------------+
+
 ```
