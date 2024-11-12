@@ -49,27 +49,6 @@ class Visualization():
         self.trajectory.append((x2, y2))
         self.trace.set_data(*zip(*self.trajectory))
 
-        # Plotting the results
-        plt.figure(figsize=(12, 6))
-        plt.subplot(2, 1, 1)
-        plt.plot(np.arange(0, t_max, dt), angles1, label='Angle 1 (rad)')
-        plt.plot(np.arange(0, t_max, dt), angles2, label='Angle 2 (rad)')
-        plt.title('Double Pendulum Angles Over Time')
-        plt.xlabel('Time (s)')
-        plt.ylabel('Angle (rad)')
-        plt.legend()
-
-        plt.subplot(2, 1, 2)
-        plt.plot(np.arange(0, t_max, dt), velocities1, label='Velocity 1 (rad/s)')
-        plt.plot(np.arange(0, t_max, dt), velocities2, label='Velocity 2 (rad/s)')
-        plt.title('Double Pendulum Velocities Over Time')
-        plt.xlabel('Time (s)')
-        plt.ylabel('Velocity (rad/s)')
-        plt.legend()
-
-        plt.tight_layout()
-        plt.show()
-        
         return self.line, self.trace
 
     def animate(self, frames):
@@ -78,5 +57,5 @@ class Visualization():
         """
         ani = animation.FuncAnimation(self.fig, self.update_plot, frames=frames,
                                       init_func=self.init_plot, blit=True, interval=self.dt * 1000)
-        plt.show()
+        # Plotting the results
 
