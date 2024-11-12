@@ -53,7 +53,6 @@ def main():
     visualization.animate(frames=1000, dt=0.05)  # Adjust frames and dt as needed
 
     # Plot angles and velocities
-    # Assuming logger has attributes to store angles and velocities as lists
     visualization.plot_angles_and_velocities(t_max=10, dt=0.01,
                                             angles1=[state[0] for state in logger.data],
                                             angles2=[state[1] for state in logger.data],
