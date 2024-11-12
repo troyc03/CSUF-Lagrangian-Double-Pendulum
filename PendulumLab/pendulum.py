@@ -5,8 +5,6 @@ Date: 2024-11-12
 Version: 1.2
 Description: This script handles the attributes necessary to build the double pendulum.
 """
-
-# pendulum.py
 import numpy as np
 
 class DoublePendulum:
