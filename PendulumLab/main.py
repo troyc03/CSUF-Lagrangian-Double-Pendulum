@@ -27,7 +27,7 @@ def main():
     logger = DataLogger()
 
     # Run simulation
-    time_steps = 100
+    time_steps = 1000
     for t in range(time_steps):
         # Compute the current state of the pendulum
         current_state = pendulum.compute_state(t * methods.dt)
@@ -40,7 +40,8 @@ def main():
         print(next_state)
 
     # Visualize the motion
-    Visualization(logger.data)
+    visualization = Visualization(logger, pendulum)
+    visualization.visualize_motion(logger.data)
 
     # Save logged data to CSV
     logger.save_to_csv('double_pendulum_data.csv')
