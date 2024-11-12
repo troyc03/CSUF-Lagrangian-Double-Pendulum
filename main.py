@@ -42,6 +42,8 @@ def main():
         # Update the pendulum stateUpda
         angles1[i], angles2[i] = pendulum.get_angles()  # Assuming this method returns current angles
         velocities1[i], velocities2[i] = pendulum.get_velocities()  # Assuming this method returns current velocities
+        
+        #Plot the results
         plt.figure(figsize=(12, 6))
         plt.subplot(2, 1, 1)
         plt.plot(np.arange(0, t_max, dt), angles1, label='Angle 1 (rad)')
