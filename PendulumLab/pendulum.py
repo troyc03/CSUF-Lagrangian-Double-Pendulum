@@ -21,6 +21,16 @@ class DoublePendulum:
         self.velocity2 = velocity2
         self.g = g  # Gravitational constant
     
+    def initial_conditions(self, mass1, mass2, length1, length2, angle1, angle2, velocity1, velocity2):
+        self.mass1 = mass1
+        self.mass2 = mass2
+        self.length1 = length1
+        self.length2 = length2
+        self.angle1 = angle1
+        self.angle2 = angle2
+        self.velocity1 = velocity1
+        self.velocity2 = velocity2
+    
     def compute_state(self):
         return [self.angle1, self.angle2, self.velocity1, self.velocity2]
 
