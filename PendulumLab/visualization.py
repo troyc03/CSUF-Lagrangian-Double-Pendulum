@@ -102,3 +102,6 @@ class Visualization:
         
         plt.tight_layout()  # Adjusts subplots to fit into figure area.
         plt.show()
+
+    def plot_phase_space(self):
+        pass
