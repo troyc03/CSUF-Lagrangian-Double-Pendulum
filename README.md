@@ -228,6 +228,10 @@ UML Swimlane Diagram
 -  Refactor code for more efficient data logging.
 -  Explore methods to optimize visualization for real-time analysis.
 
+## Plots
+
+![image](https://github.com/user-attachments/assets/2d8db2bd-cb14-45aa-9e52-dd48b73be5e8)
+
 #### Credits
 Troy Chin (Kanban Team Leader/Head DevOps Coordinator)
 
