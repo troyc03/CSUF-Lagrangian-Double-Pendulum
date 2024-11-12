@@ -228,12 +228,6 @@ UML Swimlane Diagram
 -  Refactor code for more efficient data logging.
 -  Explore methods to optimize visualization for real-time analysis.
 
-## Plots
-
-- You should have generated three graphs total: one for angular velocity, one for angular acceleration and then the 2D model of the pendulum itself (see example below).
-
-![image](https://github.com/user-attachments/assets/2d8db2bd-cb14-45aa-9e52-dd48b73be5e8)
-
 #### Credits
 Troy Chin (Kanban Team Leader/Head DevOps Coordinator)
 
