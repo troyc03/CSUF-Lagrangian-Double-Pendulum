@@ -40,8 +40,21 @@ def main():
         print(next_state)
 
     # Visualize the motion
-    visualization = Visualization(logger, pendulum)
+    visualization = Visualization(logger)
+
+    # Visualize motion over time (angles plot)
     visualization.visualize_motion(logger.data)
+
+    # Animate the double pendulum's movement
+    visualization.animate(frames=1000, dt=0.05)  # Adjust frames and dt as needed
+
+    # Plot angles and velocities
+    # Assuming logger has attributes to store angles and velocities as lists
+    visualization.plot_angles_and_velocities(t_max=10, dt=0.01,
+                                            angles1=[state[0] for state in logger.data],
+                                            angles2=[state[1] for state in logger.data],
+                                            velocities1=[state[2] for state in logger.data],
+                                            velocities2=[state[3] for state in logger.data])
 
     # Save logged data to CSV
     logger.save_to_csv('double_pendulum_data.csv')
