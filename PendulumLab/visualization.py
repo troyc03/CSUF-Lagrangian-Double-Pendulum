@@ -10,18 +10,30 @@ import matplotlib.pyplot as plt
 from matplotlib import animation 
 import numpy as np
 
-def visualize_motion(data):
-    # Placeholder data unpacking, assuming `data` is a list of states
-    angle1 = [state[0] for state in data]
-    angle2 = [state[1] for state in data]
-    plt.plot(angle1, label="Angle 1")
-    plt.plot(angle2, label="Angle 2")
-    plt.xlabel("Time")
-    plt.ylabel("Angles")
-    plt.title("Double Pendulum Motion")
-    plt.legend()
-    plt.show()
+class Visualization():
 
+    def __init__(self, logger):
+        # Initialization code here
+        self.logger = logger
+
+    def visualize_motion(self, data):
+        """
+        Visualizes the motion of the double pendulum.
+
+        Parameters:
+            data: A list of states, where each state is a tuple or list containing angles.
+        """
+        angle1 = [state[0] for state in data]
+        angle2 = [state[1] for state in data]
+        
+        plt.figure(figsize=(12, 6))
+        plt.plot(angle1, label="Angle 1")
+        plt.plot(angle2, label="Angle 2")
+        plt.xlabel("Time")
+        plt.ylabel("Angles (radians)")
+        plt.title("Double Pendulum Motion")
+        plt.legend()
+        plt.show()
 
     def update_plot(self, frame):
         """
@@ -69,12 +81,11 @@ def visualize_motion(data):
 
         # Plot velocities
         plt.subplot(2, 1, 2)
-        plt.plot(np.arange(0, t_max, dt), velocities1, label='Velocity 1 (rad/s)')
-        plt.plot(np.arange(0, t_max, dt), velocities2, label='Velocity 2 (rad/s)')
-        plt.title('Double Pendulum Velocities Over Time')
+        plt.plot(np.arange(0, t_max, dt), velocities1, label='Angular Velocity 1')
+        plt.plot(np.arange(0, t_max, dt), velocities2, label='Angular Velocity 2')
         plt.xlabel('Time (s)')
-        plt.ylabel('Velocity (rad/s)')
+        plt.ylabel('Angular Velocity (rad/s)')
         plt.legend()
-
-        plt.tight_layout()
+        plt.title('Double Pendulum Angular Velocities Over Time')
+        plt.tight_layout()  # Adjusts subplots to fit into figure area.
         plt.show()

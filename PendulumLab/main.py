@@ -8,7 +8,7 @@ Description: This script is the main entry point for the program.
 
 from pendulum import DoublePendulum
 from numerical_methods import NumericalMethods
-from visualization import visualize_motion
+from visualization import Visualization
 from data_logger import DataLogger
 
 def main():
@@ -40,7 +40,7 @@ def main():
         print(next_state)
 
     # Visualize the motion
-    visualize_motion(logger.data)
+    Visualization(logger.data)
 
     # Save logged data to CSV
     logger.save_to_csv('double_pendulum_data.csv')
