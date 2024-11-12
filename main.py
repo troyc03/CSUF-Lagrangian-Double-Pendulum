@@ -28,7 +28,7 @@ def main():
 
     # Create pendulum and numerical methods instances
     pendulum = DoublePendulum(*masses, *lengths, *angles, *velocities)
-    numerical_methods = NumericalMethods(dt, time_steps)
+    numerical_methods = NumericalMethods(dt)
 
     # Initialize arrays to store simulation results
     angles1 = np.zeros(time_steps)
@@ -38,8 +38,7 @@ def main():
 
     # Run the simulation (assuming a method exists in NumericalMethods)
     for i in range(time_steps):
-        # Update the pendulum state
-        pendulum.update()  # Assuming this method updates the state
+        # Update the pendulum stateUpda
         angles1[i], angles2[i] = pendulum.get_angles()  # Assuming this method returns current angles
         velocities1[i], velocities2[i] = pendulum.get_velocities()  # Assuming this method returns current velocities
 
