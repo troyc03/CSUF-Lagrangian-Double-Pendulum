@@ -7,7 +7,6 @@ Description: This script is the main entry point for the program.
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 from pendulum import DoublePendulum
 from numerical_methods import NumericalMethods
 from visualization import Visualization
@@ -39,28 +38,15 @@ def main():
 
     # Run the simulation (assuming a method exists in NumericalMethods)
     for i in range(time_steps):
-        # Update the pendulum stateUpda
+        # Update the pendulum state
         angles1[i], angles2[i] = pendulum.get_angles()  # Assuming this method returns current angles
         velocities1[i], velocities2[i] = pendulum.get_velocities()  # Assuming this method returns current velocities
-        
-        #Plot the results
-        plt.figure(figsize=(12, 6))
-        plt.subplot(2, 1, 1)
-        plt.plot(np.arange(0, t_max, dt), angles1, label='Angle 1 (rad)')
-        plt.plot(np.arange(0, t_max, dt), angles2, label='Angle 2 (rad)')
-        plt.title('Double Pendulum Angles Over Time')
-        plt.xlabel('Time (s)')
-        plt.ylabel('Angle (rad)')
-        plt.legend()
 
-        plt.subplot(2, 1, 2)
-        plt.plot(np.arange(0, t_max, dt), velocities1, label='Velocity 1 (rad/s)')
-        plt.plot(np.arange(0, t_max, dt), velocities2, label='Velocity 2 (rad/s)')
-        plt.title('Double Pendulum Velocities Over Time')
-        plt.xlabel('Time (s)')
-        plt.ylabel('Velocity (rad/s)')
-        plt.legend()
-        plt.tight_layout()
-        plt.show()
+    # Create a Visualization instance
+    visualization = Visualization(pendulum, dt)
+
+    # Plot the angles and velocities
+    visualization.plot_angles_and_velocities(t_max, dt, angles1, angles2, velocities1, velocities2)
+
 if __name__ == "__main__":
     main()
