@@ -27,15 +27,7 @@ class Visualization:
         """
         angle1 = [state[0] for state in data]
         angle2 = [state[1] for state in data]
-        
-        plt.figure(figsize=(12, 6))
-        plt.plot(angle1, label="Angle 1")
-        plt.plot(angle2, label="Angle 2")
-        plt.xlabel("Time")
-        plt.ylabel("Angles (radians)")
-        plt.title("Double Pendulum Angles Over Time")
-        plt.legend()
-        plt.show()
+        pass
 
     def update_plot(self, frame):
         """
