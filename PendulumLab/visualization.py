@@ -10,9 +10,11 @@ import matplotlib.pyplot as plt
 from matplotlib import animation 
 import numpy as np
 
+
 class Visualization:
-    def __init__(self, logger):
+    def __init__(self, logger, pendulum):
         self.logger = logger
+        self.pendulum = pendulum
         self.fig, self.ax = plt.subplots()  # Create a figure and axis for the animation
         self.trajectory = []  # To store the trajectory for the animation
         self.line, = self.ax.plot([], [], 'o-', lw=2)  # Line for the pendulum
@@ -27,7 +29,15 @@ class Visualization:
         """
         angle1 = [state[0] for state in data]
         angle2 = [state[1] for state in data]
-        pass
+        
+        plt.figure(figsize=(12, 6))
+        plt.plot(angle1, label="Angle 1")
+        plt.plot(angle2, label="Angle 2")
+        plt.xlabel("Time")
+        plt.ylabel("Angles (radians)")
+        plt.title("Double Pendulum Angles Over Time")
+        plt.legend()
+        plt.show()
 
     def update_plot(self, frame):
         """

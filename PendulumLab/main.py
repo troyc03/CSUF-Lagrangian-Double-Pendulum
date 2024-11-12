@@ -16,7 +16,7 @@ def main():
     mass1, mass2 = 1.0, 1.0
     length1, length2 = 1.0, 1.0
     angle1, angle2 = 1.0, 0.5  # Initial angles in radians
-    velocity1, velocity2 = 0.5, 0.5  # Initial angular velocities in radians per second
+    velocity1, velocity2 = 0.0, 0.0  # Initial angular velocities in radians per second
     g = 9.81
 
     # Initialize the double pendulum and numerical methods
@@ -28,10 +28,14 @@ def main():
 
     # Run simulation
     time_steps = 1000
+    dt = 0.01
     for t in range(time_steps):
-        # Compute the current state of the pendulum
-        current_state = pendulum.compute_state(t * methods.dt)
+        # Call compute_state correctly
+        current_state = pendulum.compute_state()  # or compute_state(t * methods.dt) if modified
         logger.log_state(current_state)
+
+        # Update the pendulum state
+        pendulum.step(dt)  # Update the state using your existing step method
 
         # Use the current state as the initial conditions for the ODE solver
         next_state = methods.solve_ode(pendulum.equations_of_motion, current_state)
@@ -39,8 +43,8 @@ def main():
         # Log the next state if needed or print it
         print(next_state)
 
-    # Visualize the motion
-    visualization = Visualization(logger)
+    # After collecting data in logger, you can visualize and animate it as follows:
+    visualization = Visualization(logger, pendulum)
 
     # Visualize motion over time (angles plot)
     visualization.visualize_motion(logger.data)
