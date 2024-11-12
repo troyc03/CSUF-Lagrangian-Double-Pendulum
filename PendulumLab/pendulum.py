@@ -1,17 +1,15 @@
 """
 File name: pendulum.py
 Author: Troy Chin (CWID: 885586685)
-Date: 2024-11-11
+Date: 2024-11-12
 Version: 1.2
-Description: This script simulates the motion of a double pendulum using the DoublePendulum class.
+Description: This script handles the attributes necessary to build the double pendulum.
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 
 class DoublePendulum:
-    def __init__(self, mass1: float, mass2: float, length1: float, length2: float, 
-                 angle1: float, angle2: float, velocity1: float, velocity2: float):
+    def __init__(self, mass1, mass2, length1, length2, angle1, angle2, velocity1, velocity2, g):
         self.mass1 = mass1
         self.mass2 = mass2
         self.length1 = length1
@@ -20,7 +18,7 @@ class DoublePendulum:
         self.angle2 = angle2
         self.velocity1 = velocity1
         self.velocity2 = velocity2
-        self.g = 9.81  # Corrected assignment for gravity
+        self.g = g  # Gravitational constant
 
     def initial_conditions(self, angle1: float, angle2: float, velocity1: float, velocity2: float):
         """Set the initial conditions for the pendulum."""
@@ -29,20 +27,28 @@ class DoublePendulum:
         self.velocity1 = velocity1
         self.velocity2 = velocity2
 
-    def equations_of_motion(self) -> list:
+    def equations_of_motion(self, t, state) -> list:
         """
         Compute the equations of motion for the double pendulum.
+        Args:
+            t (float): Time variable.
+            state (list): A list containing [theta1, theta2, theta1_dot, theta2_dot].
+
         Returns:
             list: A list containing angular velocities and accelerations.
         """
-        theta1_dot = self.velocity1
-        theta2_dot = self.velocity2
+        theta1, theta2, theta1_dot, theta2_dot = state
         
-        # Placeholder for angular accelerations (to be calculated)
-        theta_ddot1 = -self.g * (2 * self.mass1 + self.mass2) * np.sin(self.angle1) / (self.length1 * (self.mass1 + self.mass2))
-        theta_ddot2 = -self.g * self.mass2 * np.sin(self.angle2) / (self.length2 * self.mass2)
+        # Example usage of `t` if there's a time-dependent external force (this is just hypothetical)
+        external_force = np.cos(t)  # Hypothetical time-dependent force for demonstration
+
+        # Compute angular accelerations based on the current state and external force
+        theta_ddot1 = -self.g * (2 * self.mass1 + self.mass2) * np.sin(theta1) / (self.length1 * (self.mass1 + self.mass2)) + external_force
+        theta_ddot2 = -self.g * self.mass2 * np.sin(theta2) / (self.length2 * self.mass2) + external_force
 
         return [theta1_dot, theta2_dot, theta_ddot1, theta_ddot2]
+
+
 
     def Lagrangian(self) -> float:
         """
@@ -78,17 +84,17 @@ class DoublePendulum:
        return x1, y1, x2, y2
         
 
-    def compute_state(self, dt: float):
-        """Compute the state of the system after a time step dt."""
-        theta1_dot, theta2_dot, theta_ddot1, theta_ddot2 = self.equations_of_motion()
+    def compute_state(self, t):
+        # Define the current state here as a list [theta1, theta2, theta1_dot, theta2_dot]
+        state = [self.angle1, self.angle2, self.velocity1, self.velocity2]
         
-        # Update velocities
-        self.velocity1 += theta_ddot1 * dt
-        self.velocity2 += theta_ddot2 * dt
+        # Pass both 't' and 'state' to equations_of_motion
+        theta1_dot, theta2_dot, theta_ddot1, theta_ddot2 = self.equations_of_motion(t, state)
         
-        # Update angles
-        self.angle1 += theta1_dot * dt
-        self.angle2 += theta2_dot * dt
+        # Update the angles and velocities based on the computed accelerations
+        # (Your update logic would go here)
+        
+        return theta1_dot, theta2_dot, theta_ddot1, theta_ddot2
 
     def kinetic_energy(self) -> float:
         """Calculate the kinetic energy of the system."""

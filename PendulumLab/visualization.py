@@ -7,34 +7,21 @@ Description: This script contains the graphical attributes and optimization attr
 """
 
 import matplotlib.pyplot as plt
-from matplotlib import animation
+from matplotlib import animation 
 import numpy as np
-from pendulum import DoublePendulum
-from numerical_methods import NumericalMethods
 
-# Import any models here.
-class Visualization():
-    """
-    Parameters:
-        - pendulum: The DoublePendulum instance containing mass, length, and angle data
-        - dt: Time step for the simulation (default is 0.01)
-    """
-    def __init__(self, pendulum, dt=0.01):
-        self.pendulum = pendulum
-        self.dt = dt
-        self.fig, self.ax = plt.subplots()
-        self.line, = self.ax.plot([], [], 'o-', lw=2)
-        self.trace, = self.ax.plot([], [], color='gray', alpha=0.5)
-        self.trajectory = []
+def visualize_motion(data):
+    # Placeholder data unpacking, assuming `data` is a list of states
+    angle1 = [state[0] for state in data]
+    angle2 = [state[1] for state in data]
+    plt.plot(angle1, label="Angle 1")
+    plt.plot(angle2, label="Angle 2")
+    plt.xlabel("Time")
+    plt.ylabel("Angles")
+    plt.title("Double Pendulum Motion")
+    plt.legend()
+    plt.show()
 
-    def init_plot(self):
-        """
-        Initializes the plot area and lines for the animation.
-        """
-        self.ax.set_xlim(-2, 2)
-        self.ax.set_ylim(-2, 2)
-        self.ax.set_aspect('equal')
-        return self.line, self.trace
 
     def update_plot(self, frame):
         """
