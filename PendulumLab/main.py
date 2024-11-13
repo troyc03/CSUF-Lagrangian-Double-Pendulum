@@ -46,19 +46,19 @@ def main():
     # After collecting data in logger, you can visualize and animate it as follows:
     visualization = Visualization(logger, pendulum)
 
-    # Visualize motion over time (angles plot)
-    visualization.visualize_motion(logger.data)
-
     # Animate the double pendulum's movement
-    visualization.animate(frames=1000, dt=0.05)  # Adjust frames and dt as needed
+    visualization.animate(frames=len(logger.data), dt=0.05)  # Adjust frames and dt as needed
 
     # Plot angles and velocities
-    visualization.plot_angles_and_velocities(t_max=10, dt=0.01,
+    visualization.plot_angles_and_velocities(t_max=time_steps * dt, dt=dt,
                                             angles1=[state[0] for state in logger.data],
                                             angles2=[state[1] for state in logger.data],
                                             velocities1=[state[2] for state in logger.data],
                                             velocities2=[state[3] for state in logger.data])
-
+    
+    # Plot phase space
+    visualization.plot_phase_space()  # Call the new phase space plotting function
+    
     # Save logged data to CSV
     logger.save_to_csv('double_pendulum_data.csv')
 

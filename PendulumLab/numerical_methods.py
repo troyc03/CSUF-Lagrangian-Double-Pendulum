@@ -7,8 +7,6 @@ Description: This script contains the numerical methods implemented in this lab.
 
 """
 #Import numerical methods here.
-# numerical_methods.py
-import numpy as np
 
 class NumericalMethods:
    def __init__(self, dt=0.01):

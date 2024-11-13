@@ -84,6 +84,7 @@ class DoublePendulum:
 
     def total_energy(self) -> float:
         return self.kinetic_energy() + self.potential_energy()
-
+    
+    
     def reset(self):
         self.initial_conditions(0, 0, 0, 0)  # Reset to default initial conditions
