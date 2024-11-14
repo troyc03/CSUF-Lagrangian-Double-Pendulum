@@ -51,10 +51,9 @@ This lab explores the motion of a double pendulum using the principles of Lagran
 
 ## Kanban Board (Updated November 12, 2024)
 
-# ![image](https://github.com/user-attachments/assets/390bd5b0-6354-4968-b64a-c883d0f54f2a)
+![image](https://github.com/user-attachments/assets/5967c901-110a-4f65-b090-e3b81a422217)
 
-
-* [Kanban Sprint Schedule](https://docs.google.com/document/d/1XsIzqEAN1lMrPXOtpPKfbxwXxCBSAEgDXUgwJkkzNoU/edit?tab=t.0)
+* [Kanban Sprint Schedule (Updated November 13, 2024)](https://docs.google.com/document/d/1XsIzqEAN1lMrPXOtpPKfbxwXxCBSAEgDXUgwJkkzNoU/edit?tab=t.0)
 * [Kanban User Stories/Requirements Models](https://docs.google.com/document/d/1SGqSKioedVcLIY1T7fengTqAkcT4FvSXmw4P1XDdrbs/edit?tab=t.0)
 * [Kanban Task List (All tasks listed will be added to the Kanban Board weekly)](https://docs.google.com/document/d/1vBFQM8tplh93Y_LbmWPhZ9SYO8kH2StDEvxj4FI_ibQ/edit?tab=t.0)
 
