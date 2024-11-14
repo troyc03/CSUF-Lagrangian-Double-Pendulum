@@ -2,7 +2,8 @@
 File name: data_logger.py
 Author: Troy Chin (CWID: 885586685)
 Date: 2024-11-10
-Version: 1.0
+Version: 1.3
+Status: Ready to deliver to customers
 Description: This script will handle any data logging from the user.
 
 """
@@ -22,3 +23,4 @@ class DataLogger:
             writer = csv.writer(file)
             writer.writerow(["Angle 1", "Angle 2", "Velocity 1", "Velocity 2"])  # Header
             writer.writerows(self.data)
+

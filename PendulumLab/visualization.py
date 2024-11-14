@@ -10,19 +10,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-
 class Visualization:
-    def __init__(self, logger, pendulum):
+    
+    def __init__(self, logger, pendulum, dt):
+        """
+        Initializes the Visualization class.
+
+        Parameters:
+            - logger: The data logger containing simulation data.
+            - pendulum: The double pendulum object.
+            - dt: The time step for the simulation.
+        """
         self.logger = logger
         self.pendulum = pendulum
+        self.dt = dt  # Store dt for use in update_plot
         self.fig, self.ax = plt.subplots()  # Create a figure and axis for the animation
         self.line1, = self.ax.plot([], [], 'o-', lw=2, color='blue')  # Line for the first pendulum
         self.line2, = self.ax.plot([], [], 'o-', lw=2, color='red')   # Line for the second pendulum
         self.ax.set_xlim(-2, 2)
-        self.ax.set_ylim(-2, 1)
+        self.ax.set_ylim(-2, 2)
         self.ax.set_aspect('equal')
         self.ax.grid()
 
@@ -30,13 +36,8 @@ class Visualization:
         """
         Initializes the plot for the double pendulum.
         """
-        self.line1, = plt.plot([], [], 'b-', label='Pendulum 1')  # Blue line for the first pendulum
-        self.line2, = plt.plot([], [], 'r-', label='Pendulum 2')  # Red line for the second pendulum
-        plt.xlim(-2, 2)  # Set x limits
-        plt.ylim(-2, 2)  # Set y limits
-        plt.grid()
-        plt.tight_layout()
-        plt.legend()  # Add legend here
+        self.line1.set_data([], [])
+        self.line2.set_data([], [])
         return self.line1, self.line2
     
     def update_plot(self, frame):
@@ -44,43 +45,56 @@ class Visualization:
         Updates the plot for each frame of the animation.
         """
         # Update the pendulum state for the current frame
-        self.pendulum.step(self.dt)  # Assuming you have a method to update the pendulum's state
+        self.pendulum.step(self.dt)  # Update the pendulum's state
     
         # Get the current angles from the pendulum
-        angle1, angle2 = self.pendulum.get_angles()  # Assuming you have a method to get angles
+        angle1, angle2 = self.pendulum.get_angles()  # Get angles in radians
     
         # Calculate positions of the pendulum bobs
         length1 = self.pendulum.length1
         length2 = self.pendulum.length2
     
+        # Ensure the lengths are valid
+        if length1 <= 0 or length2 <= 0:
+            print("Pendulum lengths must be greater than zero.")
+            return
+    
         x1 = length1 * np.sin(angle1)
         y1 = -length1 * np.cos(angle1)
         x2 = x1 + length2 * np.sin(angle2)
         y2 = y1 - length2 * np.cos(angle2)
-
+    
         # Update the line data
         self.line1.set_data([0, x1], [0, y1])
         self.line2.set_data([x1, x2], [y1, y2])
-        
+    
+        # Print the positions for debugging
+        print(f"Frame: {frame} | Pendulum 1 Position: x1={x1}, y1={y1}")
+        print(f"Frame: {frame} | Pendulum 2 Position: x2={x2}, y2={y2}")
+    
+        return self.line1, self.line2
         return self.line1, self.line2
 
-    def animate(self, frames, dt):
+    def animate(self, frames):
         """
         Creates the animation for the double pendulum.
+        
+        Parameters:
+            frames: The total number of frames for the animation.
         """
-        # Set the pendulum properties
-        self.pendulum.length1 = 1.0  # Set length of the first pendulum arm
-        self.pendulum.length2 = 1.0  # Set length of the second pendulum arm
-        self.pendulum.mass1 = 1.0    # Set mass of the first pendulum bob
-        self.pendulum.mass2 = 1.0    # Set mass of the second pendulum bob
+        # Initialize the plot before starting the animation
+        self.init_plot()
     
         # Create the animation
-        FuncAnimation(self.fig, self.update_plot, frames=frames,
-                            init_func=self.init_plot, blit=True, interval=dt * 1000)
+        ani = FuncAnimation(self.fig, self.update_plot, frames=frames,
+                            blit=True, interval=self.dt * 1000)
     
-        plt.title("Double Pendulum Simulation")
-        plt.xlabel("X Position (m)")
-        plt.ylabel("Y Position (m)")
+        # Set titles and labels
+        self.ax.set_title("Pendulum Movement", fontsize=14)
+        self.ax.set_xlabel("X Position (m)", fontsize=12)
+        self.ax.set_ylabel("Y Position (m)", fontsize=12)
+    
+        # Show the plot
         plt.show()
             
     def plot_angles_and_velocities(self, t_max, dt, angles1, angles2, velocities1, velocities2):
@@ -112,12 +126,7 @@ class Visualization:
         plt.plot(np.arange(0, t_max, dt), velocities2, label='Angular Velocity 2')
         plt.xlabel('Time (s)')
         plt.ylabel('Angular Velocity (rad/s)')
-        plt.legend()
-        plt.title('Double Pendulum Angular Velocities Over Time')
         
-        plt.tight_layout()  # Adjusts subplots to fit into figure area.
-        plt.show()
-
     def plot_phase_space(self):
         """
         Plots the phase space of the double pendulum, showing the relationship
@@ -127,25 +136,29 @@ class Visualization:
         angles2 = [state[1] for state in self.logger.data]
         velocities1 = [state[2] for state in self.logger.data]
         velocities2 = [state[3] for state in self.logger.data]
+        
+        plt.figure(figsize=(12, 6))
     
-        plt.figure(figsize=(12, 8))
-    
-        # Plot phase space for the first pendulum
-        plt.subplot(2, 1, 1)
-        plt.plot(angles1, velocities1, label='Pendulum 1 Phase Space', color='b')
+        # Plot phase space for first pendulum
+        plt.subplot(1, 2, 1)
+        plt.plot(angles1, velocities1, label='Pendulum 1', color='blue')
         plt.title('Phase Space of Pendulum 1')
         plt.xlabel('Angle (rad)')
         plt.ylabel('Angular Velocity (rad/s)')
         plt.grid()
+        plt.axhline(0, color='black', lw=0.5, ls='--')
+        plt.axvline(0, color='black', lw=0.5, ls='--')
         plt.legend()
     
-        # Plot phase space for the second pendulum
-        plt.subplot(2, 1, 2)
-        plt.plot(angles2, velocities2, label='Pendulum 2 Phase Space', color='r')
+        # Plot phase space for second pendulum
+        plt.subplot(1, 2, 2)
+        plt.plot(angles2, velocities2, label='Pendulum 2', color='red')
         plt.title('Phase Space of Pendulum 2')
         plt.xlabel('Angle (rad)')
         plt.ylabel('Angular Velocity (rad/s)')
         plt.grid()
+        plt.axhline(0, color='black', lw=0.5, ls='--')
+        plt.axvline(0, color='black', lw=0.5, ls='--')
         plt.legend()
     
         plt.tight_layout()
