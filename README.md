@@ -223,10 +223,8 @@ UML Swimlane Diagram
 
 ## To-Do Items
 
-- Extend the simulation to include damping or friction effects.
--  Implement additional numerical methods such as adaptive Runge-Kutta.
--  Refactor code for more efficient data logging.
--  Explore methods to optimize visualization for real-time analysis.
+- Reimplement code into MATLAB (or integrate MATLAB API to Python if possible)
+- Implement unit and integration testing to account for miscalculations and error handling
 
 #### Credits
 Troy Chin (Kanban Team Leader/Head DevOps Coordinator)
