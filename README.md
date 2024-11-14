@@ -49,11 +49,11 @@ This lab explores the motion of a double pendulum using the principles of Lagran
    ```bash
    spyder
 
-## Kanban Board (Updated November 12, 2024)
+## Kanban Board (Updated November 13, 2024)
 
-![image](https://github.com/user-attachments/assets/5967c901-110a-4f65-b090-e3b81a422217)
+![image](https://github.com/user-attachments/assets/a3924d1e-369e-4e1b-a109-c7222f10591c)
 
-* [Kanban Sprint Schedule (Updated November 13, 2024)](https://docs.google.com/document/d/1XsIzqEAN1lMrPXOtpPKfbxwXxCBSAEgDXUgwJkkzNoU/edit?tab=t.0)
+
 * [Kanban User Stories/Requirements Models](https://docs.google.com/document/d/1SGqSKioedVcLIY1T7fengTqAkcT4FvSXmw4P1XDdrbs/edit?tab=t.0)
 * [Kanban Task List (All tasks listed will be added to the Kanban Board weekly)](https://docs.google.com/document/d/1vBFQM8tplh93Y_LbmWPhZ9SYO8kH2StDEvxj4FI_ibQ/edit?tab=t.0)
 
