@@ -68,7 +68,7 @@ class NumericalMethods:
 
 def main():
     def func(t, y):
-        return [-y[0]]  # Simple exponential decay
+        return [y[0]]  # Simple exponential growth
 
     # Initial condition
     y0 = [1.0]
@@ -76,28 +76,33 @@ def main():
     # Create an instance of NumericalMethods
     solver = NumericalMethods()
 
-    # Prompt user for method choice
-    print("Choose a numerical method to solve the ODE:")
-    print("1. Euler Method")
-    print("2. Runge-Kutta Method")
-    print("3. Adaptive Runge-Kutta Method")
-    print("4. Midpoint Method")
+    while True:
+        # Prompt user for method choice
+        print("Choose a numerical method to solve the ODE:")
+        print("1. Euler Method")
+        print("2. Runge-Kutta Method")
+        print("3. Adaptive Runge-Kutta Method")
+        print("4. Midpoint Method")
+        print("5. Exit program")
 
-    choice = input("Enter the number of your choice (1-4): ")
+        choice = input("Enter the number of your choice (1-5): ")
 
-    method_map = {
-        '1': 'euler',
-        '2': 'runge_kutta',
-        '3': 'adaptive_runge_kutta',
-        '4': 'midpoint'
-    }
+        method_map = {
+            '1': 'euler',
+            '2': 'runge_kutta',
+            '3': 'adaptive_runge_kutta',
+            '4': 'midpoint',
+        }
 
-    method = method_map.get(choice)
-    if method:
-        result = solver.solve_ode(func, y0, method)
-        print(f"Result using {method}: {result}")
-    else:
-        print("Invalid choice. Please select a number between 1 and 4.")
+        method = method_map.get(choice)
+        if method:
+            result = solver.solve_ode(func, y0, method)
+            print(f"Result using {method}: {result}")
+        elif choice == '5':
+            print('Exiting program...')
+            break
+        else:
+            print("Invalid choice. Please select a number between 1 and 4.")
 
 if __name__ == "__main__":
     main()
