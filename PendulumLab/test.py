@@ -32,7 +32,6 @@ class TestDoublePendulum(unittest.TestCase):
 
     def test_phase_space_plot(self):
         """Test if phase space plot generates without errors."""
-
         pass  # Replace with actual test
 
     # Integration test placeholders for MATLAB API integration
