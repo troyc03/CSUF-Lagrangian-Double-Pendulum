@@ -9,6 +9,9 @@ Purpose: This is the setup file to integrate MATLAB's API Engine to Python.
 
 import matlab.engine
 
+#NOTE: This setup.py file is optional for those who want to integrate MATLAB's API to Anaconda or Spyder
+# It is neither recommended nor required for this lab.
+
 def setup_engine(options='-desktop'):
     try:
         eng = matlab.engine.start_matlab(options)
