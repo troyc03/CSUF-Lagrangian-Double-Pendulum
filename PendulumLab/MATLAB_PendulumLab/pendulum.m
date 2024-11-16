@@ -1,7 +1,8 @@
 % File name: pendulum.m
 % Author: Troy Chin
 % Date: 15 November 2024
-% Version: 1.0
+% Version: 1.1
+% Status: Ready to deliver to customers.
 % Purpose: Reimplementation of the Double Pendulum Lab in MATLAB with animation
 
 % Define necessary parameters
