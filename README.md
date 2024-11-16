@@ -147,6 +147,8 @@ User              System                NumericalMethods
  |                   |<-- CSV export complete   |
 ```
 
+UML State Diagram 
+
 ```bash
 +-----------------------+
 |  Set Initial Conditions|
