@@ -15,3 +15,5 @@ from pendulum import DoublePendulum
 
 #Import any tests here.
 
+class TestSimulation(unittest.TestCase):
+    pass
