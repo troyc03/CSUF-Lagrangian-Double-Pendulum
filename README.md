@@ -11,7 +11,7 @@
 - [To-Do Items](#to-do-items)
 
 ## Project Description
-This lab explores the motion of a double pendulum using the principles of Lagrangian mechanics, calculus of variations, differential equations, and numerical analysis. The simulation models the chaotic dynamics of the double pendulum system by solving the governing equations both analytically and numerically.
+This lab explores the motion of a double pendulum using the principles of Lagrangian mechanics, calculus of variations, differential equations, and numerical analysis. The simulation models the chaotic dynamics of the double pendulum system by solving the governing equations both analytically and numerically. In order to conduct this lab, please make sure to download the appropriate software in the [Installation](#installation) section.
 
 ## Project Objectives
 
