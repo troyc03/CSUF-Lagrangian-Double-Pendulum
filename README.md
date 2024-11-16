@@ -36,7 +36,7 @@ This lab explores the motion of a double pendulum using the principles of Lagran
 
 - **Numerical Analysis Techniques**: Techniques such as the Euler method and Runge-Kutta methods will be employed to approximate the system's solutions for visualization and data logging purposes.
 
-- **MATLAB Integration**: MATLAB will be used for symbolic math, solving differential equations with built-in solvers, and generating visualizations of the pendulum’s motion for comparison (NOTE: If you cannot properly integrate MATLAB with your Python IDE, then this requirement is optional. You can still run the simulation in Anaconda)
+- **MATLAB Integration**: MATLAB will be used for symbolic math, solving differential equations with built-in solvers, and generating visualizations of the pendulum’s motion for comparison (NOTE: If you cannot properly integrate MATLAB with your Python IDE, then this requirement is optional. You can still run the simulation in Anaconda and treat MATLAB as a separate environment to compare your calculations)
 
 ## Installation
 
