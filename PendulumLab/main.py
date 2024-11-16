@@ -16,9 +16,9 @@ import numpy as np
 def main():
     # Define initial conditions
     mass1, mass2 = 1.0, 1.0
-    length1, length2 = 1.0, 0.5
-    angle1, angle2 = np.pi / 3, np.pi / 6  # Initial angles in radians
-    velocity1, velocity2 = 1.0, 1.0  # Initial angular velocities in radians per second
+    length1, length2 = 1.0, 1.0
+    angle1, angle2 = np.pi / 4, np.pi / 6  # Initial angles in radians
+    velocity1, velocity2 = 0.0, 0.0  # Initial angular velocities in radians per second
     g = 9.81
 
     # Initialize the double pendulum and numerical methods
