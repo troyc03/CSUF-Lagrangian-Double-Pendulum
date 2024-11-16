@@ -49,12 +49,11 @@ This lab explores the motion of a double pendulum using the principles of Lagran
    ```bash
    spyder
 
-## Kanban Board (Updated November 12, 2024)
+## Kanban Board (Updated November 13, 2024)
 
-# ![image](https://github.com/user-attachments/assets/390bd5b0-6354-4968-b64a-c883d0f54f2a)
+![image](https://github.com/user-attachments/assets/a3924d1e-369e-4e1b-a109-c7222f10591c)
 
 
-* [Kanban Sprint Schedule](https://docs.google.com/document/d/1XsIzqEAN1lMrPXOtpPKfbxwXxCBSAEgDXUgwJkkzNoU/edit?tab=t.0)
 * [Kanban User Stories/Requirements Models](https://docs.google.com/document/d/1SGqSKioedVcLIY1T7fengTqAkcT4FvSXmw4P1XDdrbs/edit?tab=t.0)
 * [Kanban Task List (All tasks listed will be added to the Kanban Board weekly)](https://docs.google.com/document/d/1vBFQM8tplh93Y_LbmWPhZ9SYO8kH2StDEvxj4FI_ibQ/edit?tab=t.0)
 
@@ -224,10 +223,8 @@ UML Swimlane Diagram
 
 ## To-Do Items
 
-- Extend the simulation to include damping or friction effects.
--  Implement additional numerical methods such as adaptive Runge-Kutta.
--  Refactor code for more efficient data logging.
--  Explore methods to optimize visualization for real-time analysis.
+- Reimplement code into MATLAB (or integrate MATLAB API to Python if possible)
+- Implement unit and integration testing to account for miscalculations and error handling
 
 #### Credits
 Troy Chin (Kanban Team Leader/Head DevOps Coordinator)

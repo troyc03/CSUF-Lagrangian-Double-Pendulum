@@ -1,7 +1,7 @@
 """
 File name: numerical_methods.py
 Author: Troy Chin (CWID: 885586685)
-Date: 2024-11-1
+Date: 2024-11-13
 Version: 1.4
 Status: Ready to deliver to customers
 Description: This script contains the numerical methods implemented in this lab.
@@ -106,3 +106,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

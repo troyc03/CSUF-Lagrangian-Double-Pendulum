@@ -2,8 +2,8 @@
 File name: main.py
 Author: Troy Chin (CWID: 885586685)
 Date: 2024-11-12
-Version: 1.3 
-Status: Ready for submission to customers
+Version: 1.3
+Status: Ready for submission and delivery to customers
 Description: This script is the main entry point for the program.
 """
 
@@ -16,8 +16,8 @@ import numpy as np
 def main():
     # Define initial conditions
     mass1, mass2 = 1.0, 1.0
-    length1, length2 = 1.0, 1.0
-    angle1, angle2 = np.pi / 3, np.pi / 6  # Initial angles in radians
+    length1, length2 = 1.0, 0.5
+    angle1, angle2 = np.pi / 4, np.pi / 6  # Initial angles in radians
     velocity1, velocity2 = 0.0, 0.0  # Initial angular velocities in radians per second
     g = 9.81
 
