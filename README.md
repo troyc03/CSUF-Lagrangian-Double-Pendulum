@@ -220,13 +220,13 @@ UML Swimlane Diagram
 
 ## Known Issues
 
-- **MATLAB Integration**: Some users may experience compatibility issues when integrating MATLAB and Python. This is optional but recommended for comparison.
+- **MATLAB Integration**: Some users may experience compatibility issues when integrating MATLAB and Python. For this reason, integration is optional.
 - **Chaotic Instability**: The nature of the double pendulum system leads to highly unstable and divergent results if precise initial conditions are not maintained.
 
 ## To-Do Items
 
 - Reimplement code into MATLAB (or integrate MATLAB API to Python if possible)
-- Implement unit and integration testing to account for miscalculations and error handling
+- Implement unit and integration testing to the Python laboratory to account for miscalculations and error handling in case MATLAB is not integrated correctly.
 
 #### Credits
 Troy Chin (Kanban Team Leader/Head DevOps Coordinator)
