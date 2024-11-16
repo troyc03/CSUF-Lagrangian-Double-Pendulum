@@ -31,9 +31,6 @@ class DoublePendulum:
         self.velocity2 = velocity2
         
     def get_angles(self):
-        """
-        Returns the current angles of the pendulum.
-        """
         return self.angle1, self.angle2
     
     def compute_state(self):

@@ -8,7 +8,7 @@
 m1 = 1.0; % mass1
 m2 = 1.0; % mass2
 l1 = 1.0; % length1
-l2 = 0.5; % length2
+l2 = 1.0; % length2
 g = 9.81; % Gravitational constant
 
 % Define initial conditions

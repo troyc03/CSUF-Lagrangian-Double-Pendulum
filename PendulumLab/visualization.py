@@ -13,14 +13,6 @@ from matplotlib.animation import FuncAnimation
 class Visualization:
     
     def __init__(self, logger, pendulum, dt):
-        """
-        Initializes the Visualization class.
-
-        Parameters:
-            - logger: The data logger containing simulation data.
-            - pendulum: The double pendulum object.
-            - dt: The time step for the simulation.
-        """
         self.logger = logger
         self.pendulum = pendulum
         self.dt = dt  # Store dt for use in update_plot
@@ -33,17 +25,11 @@ class Visualization:
         self.ax.grid()
 
     def init_plot(self):
-        """
-        Initializes the plot for the double pendulum.
-        """
         self.line1.set_data([], [])
         self.line2.set_data([], [])
         return self.line1, self.line2
     
     def update_plot(self, frame):
-        """
-        Updates the plot for each frame of the animation.
-        """
         # Update the pendulum state for the current frame
         self.pendulum.step(self.dt)  # Update the pendulum's state
     
@@ -76,12 +62,6 @@ class Visualization:
         return self.line1, self.line2
 
     def animate(self, frames):
-        """
-        Creates the animation for the double pendulum.
-        
-        Parameters:
-            frames: The total number of frames for the animation.
-        """
         # Initialize the plot before starting the animation
         self.init_plot()
     
@@ -98,17 +78,6 @@ class Visualization:
         plt.show()
             
     def plot_angles_and_velocities(self, t_max, dt, angles1, angles2, velocities1, velocities2):
-        """
-        Plots the angles and velocities of the double pendulum over time.
-
-        Parameters:
-            - t_max: The maximum time for the simulation.
-            - dt: The time step for the simulation.
-            - angles1: The angles of the first pendulum.
-            - angles2: The angles of the second pendulum.
-            - velocities1: The velocities of the first pendulum.
-            - velocities2: The velocities of the second pendulum.
-        """
         plt.figure(figsize=(12, 8))  # Adjusted size
 
         # Plot angles
