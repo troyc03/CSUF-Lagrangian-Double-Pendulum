@@ -9,9 +9,9 @@ Description: This is a test file to properly integrate MATLAB's API Engine to Py
 try:
     import matlab.engine
 except ModuleNotFoundError:
-    raise ModuleNotFoundError(
+        raise ModuleNotFoundError(
         "ERROR: The MATLAB Engine API module is not installed. Please ensure the MATLAB Engine API for Python is installed and properly integrated with your Python environment."
-    )
+        )
 
 def setup_engine():
     try:
