@@ -6,6 +6,8 @@ Version: 1.0
 Description: This is a test file to properly integrate MATLAB's API Engine to Python.
 """
 
+#This is optional - uncomment this script if you want to try integrating with MATLAB.
+
 # try:
 #     # import matlab.engine
 # except ModuleNotFoundError:

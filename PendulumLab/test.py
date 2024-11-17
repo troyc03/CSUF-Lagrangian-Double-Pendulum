@@ -10,9 +10,10 @@ import unittest
 import numpy as np
 from numerical_methods import NumericalMethods
 from data_logger import DataLogger
-from visualization import Visualization
+# from visualization import Visualization
 from pendulum import DoublePendulum
 
+#Import any test models here.
 class TestSimulation(unittest.TestCase):
     
     def setUp(self):
