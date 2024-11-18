@@ -10,4 +10,5 @@ numpy=1.26.4=py312hfd52020_0
 numpy-base=1.26.4=py312h4dde369_0
 numpydoc=1.7.0=py312haa95532_0
 scipy=1.13.1=py312hbb039d4_0
-
+flake8
+pytest
