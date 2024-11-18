@@ -10,10 +10,10 @@ import unittest
 import numpy as np
 from numerical_methods import NumericalMethods
 from data_logger import DataLogger
-# from visualization import Visualization
 from pendulum import DoublePendulum
 
 #Import any test models here.
+
 class TestSimulation(unittest.TestCase):
     
     def setUp(self):
@@ -46,16 +46,6 @@ class TestSimulation(unittest.TestCase):
         self.assertAlmostEqual(self.pendulum.angle1, self.angle1)
         self.assertAlmostEqual(self.pendulum.angle2, self.angle2)
 
-    # def test_numerical_integration(self):
-    #     """Test numerical integration of the pendulum's equations of motion."""
-        # initial_conditions = [self.angle1, self.angle2, self.velocity1, self.velocity2]
-        # time_span = np.linspace(0, 10, 100)  # 10 seconds, 100 steps
-        # result = self.numerical_methods.solve_ode(self.pendulum.equations_of_motion, initial_conditions)
-
-        # # Check if the result is of the expected shape
-        # self.assertEqual(result.shape[0], 100)  # 100 time steps
-        # self.assertEqual(result.shape[1], 4)    # 4 state variables
-
     def test_data_logging(self):
         """Test the data logging functionality."""
         test_data = [self.angle1, self.angle2, self.velocity1, self.velocity2]
@@ -65,24 +55,50 @@ class TestSimulation(unittest.TestCase):
         logged_data = self.data_logger.data
         self.assertEqual(len(logged_data), 1)  # Check if one entry is logged
         self.assertEqual(logged_data[0], test_data)
-
-    # def test_visualization_plot(self):
-        # """Test if the visualization can create a plot without errors."""
-        # angles1 = [self.angle1]
-        # angles2 = [self.angle2]
-        # velocities1 = [self.velocity1]
-        # velocities2 = [self.velocity2]
         
-        # # This will not actually show a plot in a test environment, but will check for errors
-        # try:
-        #     visualization = Visualization(self.data_logger, self.pendulum, dt=0.01)
-        #     visualization.plot_angles_and_velocities(t_max=10, dt=0.01,
-        #                                             angles1=angles1,
-        #                                             angles2=angles2,
-        #                                             velocities1=velocities1,
-        #                                             velocities2=velocities2)
-        # except Exception as e:
-        #     self.fail(f"Visualization plotting failed with exception: {e}")
+class TestNumericalMethods(unittest.TestCase):
+    
+    def setUp(self):
+        """Set up the test environment before each test."""
+        self.dt = 0.01
+        self.methods = NumericalMethods(dt=self.dt)
+        self.initial_state = [1.0]  # Initial condition for y(0) = 1
+        self.tolerance = 1e-6
 
+    def linear_ode(self, t, y):
+        """Linear ODE function: dy/dt = -y."""
+        return [-yi for yi in y]
+
+    def test_euler_method(self):
+        """Test Euler's Method for solving the linear ODE."""
+        result = self.methods.solve_ode(
+            self.linear_ode, self.initial_state, method='euler'
+            )
+        expected = [self.initial_state[0] * (1-self.dt)] #Analytical solution
+        self.assertAlmostEqual(result[0], expected[0], delta=1e-3)
+        
+    def test_runge_kutta(self):
+        """Test Runge-Kutta method for solving the linear ODE."""
+        result = self.methods.solve_ode(
+            self.linear_ode, self.initial_state, method='runge_kutta'
+            )
+        expected = [self.initial_state[0] * np.exp(-self.dt)]  # Analytical solution
+        self.assertAlmostEqual(result[0], expected[0], delta=1e-6)
+        
+    def test_adaptive_runge_kutta(self):
+        """Test Adaptive Runge-Kutta method for solving the linear ODE."""
+        result = self.methods.solve_ode(
+            self.linear_ode, self.initial_state, method='adaptive_runge_kutta'
+            )
+        expected = [self.initial_state[0] * np.exp(-self.dt)] #Analytical solution
+        self.assertAlmostEqual(result[0], expected[0], delta=1e-6)
+        
+    def test_midpoint(self):
+        result = self.methods.solve_ode(
+            self.linear_ode, self.initial_state, method='midpoint'
+            )
+        expected = [self.initial_state[0] * np.exp(-self.dt)] #Analytical solution
+        self.assertAlmostEqual(result[0], expected[0], delta=1e-6)
 if __name__ == '__main__':
     unittest.main()
+
