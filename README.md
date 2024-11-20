@@ -46,9 +46,11 @@ This lab explores the motion of a double pendulum using the principles of Lagran
    For Conda users:
    ```bash
    conda install numpy scipy matplotlib
+   ```
    For Windows Powershell users:
    ```bash
    pip install numpy scipy matplotlib
+   ```
 5. **Open Spyder**: Launch Spyder from the Anaconda Navigator or by running this command in the Anaconda Command Prompt (You can also use Jupyter or VSCode if you want):  
    ```bash
    spyder
