@@ -1,0 +1,71 @@
+% PRELIMINARY: Numerical Integration/Differentiation 
+% In order to understand numerical methods of solving differential
+% equations, we must become familiar with numerical integration and
+% differentiation.
+
+% PART 1: Numerical differentiation with limits.
+
+% Consider the following example:
+
+f = @(x) cos(tan(1/(1+x*2))); % Function handle
+x = 1+sqrt(5)/3;      % Evaluation point
+toler = 1e-5;    % Tolerance
+
+% Call the function
+[L, n] = numerical_methods(f, x, toler);
+
+% Display results
+disp('Step Sizes, Derivatives, and Errors:');
+disp(L);
+disp(['Number of Iterations: ', num2str(n)]);
+
+% Function definition
+function [L, n] = numerical_methods(f, x, toler)
+    % Input - f: Function handle (e.g., @(x) x^2)
+    %         x: Point of differentiation
+    %         toler: Tolerance for error
+    
+    % Output - L = [H', D', E']
+    %          H: Step sizes
+    %          D: Approximate derivatives
+    %          E: Error bounds
+
+    max1 = 15; % Maximum iterations
+    h = 1; % Initial step size
+    H(1) = h;
+    D(1) = (f(x + h) - f(x - h)) / (2 * h); % Central difference method
+    E(1) = 0; % Initial error
+    R(1) = 0; % Initial relative error
+
+    for n = 1:2
+        h = h / 10;
+        H(n + 1) = h;
+        D(n + 1) = (f(x + h) - f(x - h)) / (2 * h);
+        E(n + 1) = abs(D(n + 1) - D(n));
+        R(n + 1) = 2 * E(n + 1) / (abs(D(n + 1)) + abs(D(n)) + eps);
+    end
+
+    n = 2;
+    while (E(n) > E(n + 1)) && (R(n) > toler) && (n < max1)
+        h = h / 10;
+        H(n + 2) = h;
+        D(n + 2) = (f(x + h) - f(x - h)) / (2 * h);
+        E(n + 2) = abs(D(n + 2) - D(n + 1));
+        R(n + 2) = 2 * E(n + 2) / (abs(D(n + 2)) + abs(D(n + 1)) + eps);
+        n = n + 1;
+    end
+
+    n = length(D) - 1;
+    L = [H', D', E']; % Combine results into output
+end
+
+% Take in a moment to study the code. We will be doing more examples below.
+
+% PART 2: Numerical differentiation using extrapolation
+
+function [D, err, relerr, n] = diffext(f,x,delta,toler)
+err=1;
+relerr=1;
+h=1;
+j=1;
+D(1,1)
