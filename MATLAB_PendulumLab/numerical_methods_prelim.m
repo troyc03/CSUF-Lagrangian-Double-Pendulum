@@ -1,7 +1,10 @@
-% Numerical Integration/Differentiation Test Script
-% This script tests the numerical_methods function.
+% PRELIMINARY: Numerical Integration/Differentiation Test Script
+% In order to understand numerical methods of solving differential
+% equations, we must become familiar with numerical integration and
+% differentiation.
 
-% Define the function for differentiation
+% Consider the following example:
+
 f = @(x) sin(x); % Function handle
 x = pi / 4;      % Evaluation point
 toler = 1e-5;    % Tolerance
