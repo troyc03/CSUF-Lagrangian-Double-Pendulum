@@ -42,17 +42,22 @@ This lab explores the motion of a double pendulum using the principles of Lagran
 
 1. **Install Anaconda**: Download and install [Anaconda](https://www.anaconda.com/products/distribution) for the primary numerical and scientific calculations performed in this laboratory.
 2. **Install MATLAB**: Download and install [MATLAB](https://www.mathworks.com/products/matlab.html) to compare numerical calculations.
-3. **Install the following libraries**: You will need these in order for the simulation to properly work on your laptop.
+3. **Install the following libraries**: You will need these in order for the simulation to properly work on your laptop (you can either install these libraries through the Anaconda Command Prompt or through Powershell).
+  - For Conda users:
    ```bash
    conda install numpy scipy matplotlib
-4. **Open Spyder**: Launch Spyder from the Anaconda Navigator or by running this command in the Anaconda Command Prompt (You can also use Jupyter or VSCode if you want):  
+   ```
+  - For Windows Powershell users:
+   ```bash
+   pip install numpy scipy matplotlib
+   ```
+5. **Open Spyder**: Launch Spyder from the Anaconda Navigator or by running this command in the Anaconda Command Prompt (You can also use Jupyter or VSCode if you want):  
    ```bash
    spyder
 
 ## Kanban Board (Updated November 13, 2024)
 
-![image](https://github.com/user-attachments/assets/a3924d1e-369e-4e1b-a109-c7222f10591c)
-
+![image](https://github.com/user-attachments/assets/3d450e2d-d026-4719-a17c-8507de962523)
 
 * [Kanban User Stories/Requirements Models](https://docs.google.com/document/d/1SGqSKioedVcLIY1T7fengTqAkcT4FvSXmw4P1XDdrbs/edit?tab=t.0)
 * [Kanban Task List (All tasks listed will be added to the Kanban Board weekly)](https://docs.google.com/document/d/1vBFQM8tplh93Y_LbmWPhZ9SYO8kH2StDEvxj4FI_ibQ/edit?tab=t.0)
@@ -227,6 +232,7 @@ UML Swimlane Diagram
 
 - Reimplement code into MATLAB (or integrate MATLAB API to Python if possible)
 - Implement unit and integration testing to the Python laboratory to account for miscalculations and error handling in case MATLAB is not integrated correctly.
+- Continuously perform integration testing and unit testing to make sure that all components in the lab are running properly.
 
 #### Credits
 Troy Chin (Kanban Team Leader/Head DevOps Coordinator)
