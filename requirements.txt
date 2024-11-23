@@ -11,8 +11,7 @@ jupyterlab_pygments==0.3.0
 jupyterlab_server==2.27.3
 kiwisolver==1.4.7
 MarkupSafe==2.1.5
-matlab==0.1
--e file:///C:/Program%20Files/MATLAB/R2024b/extern/engines/python  # Install matlabengine from local path
+matlab=0.1
 matplotlib==3.9.2
 matplotlib-inline==0.1.7
 notebook==7.2.2
