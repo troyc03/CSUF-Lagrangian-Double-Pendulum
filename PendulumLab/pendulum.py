@@ -9,6 +9,7 @@ Description: This script handles the attributes necessary to build the double pe
 import numpy as np
 
 class DoublePendulum:
+    
     def __init__(self, mass1, mass2, length1, length2, angle1, angle2, velocity1, velocity2, g=9.81):
         self.mass1 = mass1
         self.mass2 = mass2
