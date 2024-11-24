@@ -1,112 +1,170 @@
-% PRELIMINARY: Numerical Integration/Differentiation 
+% File name: numerical_methods_prelim.m
+% Author: Troy Chin
+% Version: 1.2
+% Purpose: This script provides a comprehensive introduction to numerical
+% differentiation, focusing on finite differences and extrapolation methods.
 
-% In order to understand numerical methods of solving differential
-% equations, we must become familiar with numerical integration and
-% differentiation. Let's begin with numerical differentiation using 
-% the forward, backward, and central finite differences. 
+% =====================================================================
+% NUMERICAL DIFFERENTIATION PART 1a: Central Difference Method
+% =====================================================================
+disp('--- Numerical Differentiation: Central Difference ---');
 
-% NUMERICAL DIFFERENTIATION PART 1: Numerical differentiation with limits
+% Example: Central Difference Approximation
+f_central = @(x) sin(x);  % Function handle
+x_central = pi / 4;       % Point of differentiation
+tolerance = 1e-5;         % Tolerance for relative error
 
-f = @(x) sin(x);  % Function handle
-x = pi / 4;                  % Evaluation point
-toler = 1e-5;                        % Tolerance
-
-% Call the function
-[L, n] = numerical_methods(f, x, toler);
+% Compute derivatives using central difference
+[central_results, central_iters] = central_difference(f_central, x_central, tolerance);
 
 % Display results
-disp('Step Sizes, Derivatives, and Errors:');
-disp(L);
-disp(['Number of Iterations: ', num2str(n)]);
+disp('Central Difference Results (Step Sizes, Derivatives, Errors):');
+disp(central_results);
+disp(['Number of Iterations: ', num2str(central_iters)]);
 
-% Function definition for numerical differentiation with limits
-function [L, n] = numerical_methods(f, x, toler)
-    % f: Function handle (e.g., @(x) x^2)
-    % x: Point of differentiation
-    % toler: Tolerance for error
+% Function for Central Difference
+function [results, n] = central_difference(f, x, tolerance)
+    % Input: f - Function handle
+    %        x - Point of differentiation
+    %        tolerance - Error tolerance
+    % Output: results - Table [Step Sizes, Derivatives, Errors]
+    %         n - Number of iterations
 
     max_iter = 15;  % Maximum iterations
     h = 1;          % Initial step size
-    H = h;          % Step sizes array
-    D = (f(x + h) - f(x - h)) / (2 * h);  % Central difference approximation
-    E = 0;          % Initial error
-    R = 0;          % Initial relative error
-    
-    % Initialize arrays for errors and relative errors
-    errors = E;   
-    rel_errors = R;
-    derivatives = D;
-    step_sizes = H;
+    derivatives = []; errors = []; step_sizes = []; % Initialize arrays
+
+    % Initial derivative calculation
+    derivatives(1) = (f(x + h) - f(x - h)) / (2 * h);
+    step_sizes(1) = h;
+    errors(1) = 0;  % Initial error
 
     n = 1; % Iteration counter
-    while (n < max_iter) && (n < length(errors)) && (errors(n) > errors(n + 1)) && (rel_errors(n) > toler)
-        h = h / 10;  % Reduce step size
+    while n < max_iter
+        % Update step size
+        h = h / 10;
         step_sizes(n + 1) = h;
-        
-        % Compute new derivative using central difference
-        D_new = (f(x + h) - f(x - h)) / (2 * h);
-        derivatives(n + 1) = D_new;
-        
-        % Calculate error and relative error
+
+        % Compute new derivative
+        new_derivative = (f(x + h) - f(x - h)) / (2 * h);
+        derivatives(n + 1) = new_derivative;
+
+        % Calculate error
         errors(n + 1) = abs(derivatives(n + 1) - derivatives(n));
-        rel_errors(n + 1) = 2 * errors(n + 1) / (abs(derivatives(n + 1)) + abs(derivatives(n)) + eps);
-        
+
+        % Stop if relative error meets tolerance
+        rel_error = 2 * errors(n + 1) / (abs(derivatives(n + 1)) + abs(derivatives(n)) + eps);
+        if rel_error <= tolerance
+            break;
+        end
+
         n = n + 1;
     end
 
-    % Prepare output
-    L = [step_sizes', derivatives', errors'];  % Combine results into output
+    % Combine results into table
+    results = [step_sizes', derivatives', errors'];
 end
 
-% NUMERICAL DIFFERENTIATION PART 2: Numerical differentiation using extrapolation
+% =====================================================================
+% NUMERICAL DIFFERENTIATION PART 1b: Forward and Backward Differences
+% =====================================================================
+disp('--- Numerical Differentiation: Forward and Backward Differences ---');
 
-f = @(x) cos(tan(1/(1 + x * 2)));  % Function handle
-x = 1 + sqrt(5)/3;                  % Evaluation point
-delta = 1e-5;                        % Minimum error for stopping
-toler = 1e-5;                        % Tolerance
+% Example: Forward Difference
+f_forward = @(x) exp(x);  % Function handle
+x_forward = 2;            % Point of differentiation
+h_forward = 0.1;          % Step size
 
-% Call the function
-[D, err, relerr, n] = diffext(f, x, delta, toler);
+forward_approx = finite_difference(f_forward, x_forward, h_forward, "forward");
+disp(['Forward Difference Approximation at x = ', num2str(x_forward), ':']);
+disp(forward_approx);
+
+% Example: Backward Difference
+backward_approx = finite_difference(f_forward, x_forward, h_forward, "backward");
+disp(['Backward Difference Approximation at x = ', num2str(x_forward), ':']);
+disp(backward_approx);
+
+% Generalized Function for Forward/Backward Differences
+function df = finite_difference(f, x, h, method)
+    % Input: f - Function handle
+    %        x - Point of differentiation
+    %        h - Step size
+    %        method - "forward" or "backward"
+    % Output: df - Approximation of the derivative
+
+    switch method
+        case "forward"
+            df = (f(x + h) - f(x)) / h;  % Forward difference formula
+        case "backward"
+            df = (f(x) - f(x - h)) / h;  % Backward difference formula
+        otherwise
+            error('Invalid method. Use "forward" or "backward".');
+    end
+end
+
+% =====================================================================
+% NUMERICAL DIFFERENTIATION PART 2: Extrapolation Method
+% =====================================================================
+disp('--- Numerical Differentiation: Extrapolation ---');
+
+% Example 2: Extrapolation Method
+f2 = @(x) cos(tan(1 / (1 + 2 * x))); % Function handle
+x2 = 1 + sqrt(5) / 3;                % Point of differentiation
+delta2 = 1e-5;                       % Minimum error
+toler2 = 1e-5;                       % Tolerance
+
+% Call the extrapolation function
+[D2, err2, relerr2, n2] = diffext(f2, x2, delta2, toler2);
 
 % Display results
 disp('Extrapolated Derivatives, Errors, and Relative Errors:');
-disp(D);
-disp(['Number of Iterations: ', num2str(n)]);
+disp(D2);
+disp(['Number of Iterations: ', num2str(n2)]);
 
-% Function definition for numerical differentiation using extrapolation
+% Function for extrapolation
 function [D, err, relerr, n] = diffext(f, x, delta, toler)
-    % f: Function handle
-    % x: Point of differentiation
-    % delta: Minimum error for stopping
-    % toler: Tolerance for relative error
-    
-    err = 1;
-    relerr = 1;
-    h = 1;  % Initial step size
-    j = 1;  % Iteration counter
-    
-    % Initial derivative using central difference
-    D(1, 1) = (feval(f, x + h) - feval(f, x - h)) / (2 * h);
+    % Input: f - Function handle
+    %        x - Point of differentiation
+    %        delta - Minimum allowable error
+    %        toler - Error tolerance
+    % Output: D - Matrix of extrapolated derivatives
+    %         err - Final error
+    %         relerr - Final relative error
+    %         n - Number of iterations
 
-    % Start iterations for extrapolation
-    while relerr > toler && err > delta && j < 12
-        h = h / 2;  % Reduce step size
-        D(j + 1, 1) = (feval(f, x + h) - feval(f, x - h)) / (2 * h);  % New central difference
-        
+    err = 1;       % Initial error
+    relerr = 1;    % Initial relative error
+    h = 1;         % Initial step size
+    j = 1;         % Iteration counter
+
+    % Initial derivative (central difference)
+    D(1, 1) = (f(x + h) - f(x - h)) / (2 * h);
+
+    % Extrapolation iterations
+    while err > delta && relerr > toler && j < 12
+        % Reduce step size
+        h = h / 2;
+        D(j + 1, 1) = (f(x + h) - f(x - h)) / (2 * h);
+
         % Extrapolate results
         for k = 1:j
             D(j + 1, k + 1) = D(j + 1, k) + (D(j + 1, k) - D(j, k)) / (4^k - 1);
         end
-        
+
         % Calculate error and relative error
         err = abs(D(j + 1, j + 1) - D(j, j));
         relerr = 2 * err / (abs(D(j + 1, j + 1)) + abs(D(j, j)) + eps);
-        
-        % Increment iteration counter
-        j = j + 1;
+
+        j = j + 1; % Increment iteration counter
     end
-    
-    n = size(D, 1);  % Get the number of iterations
+
+    n = size(D, 1); % Total iterations
 end
 
-
+% =====================================================================
+% Conclusion
+% =====================================================================
+% This script demonstrates two methods for numerical differentiation:
+% 1. Finite Differences (Forward, Backward, and Central).
+% 2. Extrapolation techniques for improved accuracy.
+% Users can define custom functions, points, and tolerances for testing.
