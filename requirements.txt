@@ -1,5 +1,4 @@
-﻿@ File name: requirements.txt
-@ Purpose: Contains any and all requirements necessary for this project
+# This file contains any and all requirements necessary for this project
 
 jupyter-events==0.10.0
 jupyter-lsp==2.2.5
@@ -12,8 +11,6 @@ jupyterlab_pygments==0.3.0
 jupyterlab_server==2.27.3
 kiwisolver==1.4.7
 MarkupSafe==2.1.5
-matlab==0.1
-matlabengine @ file:///C:/Program%20Files/MATLAB/R2024b/extern/engines/python
 matplotlib==3.9.2
 matplotlib-inline==0.1.7
 notebook==7.2.2
