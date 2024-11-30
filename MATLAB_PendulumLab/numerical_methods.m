@@ -12,7 +12,7 @@ function y = euler_method(func, y0, h)
 end
 
 % ====================================================================
-% PART 2A: Solving Differential Equations using Runge-Kutta Method (RK4)
+% PART 2: Solving Differential Equations using Runge-Kutta Method (RK4)
 % ====================================================================
 function y = runge_kutta(func, y0, h)
     k1 = func(0, y0);
