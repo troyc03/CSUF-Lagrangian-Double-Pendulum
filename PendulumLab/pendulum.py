@@ -11,6 +11,7 @@ import numpy as np
 class DoublePendulum:
     
     def __init__(self, mass1, mass2, length1, length2, angle1, angle2, velocity1, velocity2, g=9.81):
+        """Initialize the pendulum system attributes."""
         self.mass1 = mass1
         self.mass2 = mass2
         self.length1 = length1
@@ -22,6 +23,7 @@ class DoublePendulum:
         self.g = g  # Gravitational constant
     
     def initial_conditions(self, mass1, mass2, length1, length2, angle1, angle2, velocity1, velocity2):
+        """Update the initial conditions of the pendulum system."""
         self.mass1 = mass1
         self.mass2 = mass2
         self.length1 = length1
@@ -32,12 +34,15 @@ class DoublePendulum:
         self.velocity2 = velocity2
         
     def get_angles(self):
+        """Get the initial angles of the system."""
         return self.angle1, self.angle2
     
     def compute_state(self):
+        """Compute the current state of the system."""
         return [self.angle1, self.angle2, self.velocity1, self.velocity2]
 
     def equations_of_motion(self, t, state):
+        """Compute the Euler-Lagrange equations of motion for the pendulum."""
         angle1, angle2, velocity1, velocity2 = state
         
         delta_theta = angle2 - angle1
@@ -60,6 +65,7 @@ class DoublePendulum:
         return [velocity1, theta1_ddot, velocity2, theta2_ddot]
 
     def step(self, dt):
+        """Compute the instantaneous rate of change per time of velocity and position."""
         derivatives = self.equations_of_motion(0, self.compute_state())
         self.angle1 += derivatives[0] * dt
         self.velocity1 += derivatives[1] * dt
@@ -67,6 +73,7 @@ class DoublePendulum:
         self.velocity2 += derivatives[3] * dt
 
     def get_positions(self) -> tuple:
+        """Get the positions in tuples of the pendulum system."""
         x1 = self.length1 * np.sin(self.angle1)
         y1 = -self.length1 * np.cos(self.angle1)
         x2 = x1 + self.length2 * np.sin(self.angle2)
@@ -74,6 +81,7 @@ class DoublePendulum:
         return x1, y1, x2, y2
 
     def kinetic_energy(self) -> float:
+        """Compute the kinetic energy of the entire system."""
         v1 = self.length1 * self.velocity1
         v2 = self.length2 * self.velocity2
         T1 = 0.5 * self.mass1 * v1**2
@@ -81,6 +89,7 @@ class DoublePendulum:
         return T1 + T2
 
     def potential_energy(self) -> float:
+        """Compute the potential energy of the entire system."""
         h1 = self.length1 * (1 - np.cos(self.angle1))
         h2 = self.length2 * (1 - np.cos(self.angle2))
         V1 = self.mass1 * self.g * h1
@@ -88,8 +97,10 @@ class DoublePendulum:
         return V1 + V2
 
     def total_energy(self) -> float:
+        """Calculate the net energy of the system."""
         return self.kinetic_energy() + self.potential_energy()
     
     
     def reset(self):
+        """Reset the conditions of the system back to zero."""
         self.initial_conditions(0, 0, 0, 0)  # Reset to default initial conditions

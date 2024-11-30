@@ -1,111 +1,90 @@
 % File name: numerical_methods.m
-% Author name: Troy Chin
-% Version: 1.0
-% Purpose: This script demonstrates solving linear ODEs using numerical
-% methods including Euler's Method, Runge-Kutta (4th Order), and the Midpoint Method.
+% Author name: Troy Chin (CWID: 885586685)
+% Version: 1.6
+% Purpose: Solve ODEs using different numerical methods, output solutions in the terminal, and plot them.
 
-% =====================================================================
-% NUMERICAL METHODS: Solving ODEs
-% =====================================================================
-disp('--- Solving ODEs Using Numerical Methods ---');
-
-% Example ODE: y' = -2y, y(0) = -0.5
-f = @(x, y) -2 * y;  % ODE function handle
-h = 0.05;            % Step size
-x = 0:h:5;           % x range
-y_initial = -0.5;    % Initial condition
-
-% =====================================================================
-% EULER'S METHOD
-% =====================================================================
-disp('--- Euler''s Method ---');
-[y_euler] = euler_method(f, x, y_initial);
-disp('Euler''s Method Results:');
-disp(table(x', y_euler', 'VariableNames', {'x', 'y'}));
-
-% =====================================================================
-% RUNGE-KUTTA METHOD (4th Order)
-% =====================================================================
-disp('--- Runge-Kutta Method (4th Order) ---');
-[y_rk4] = runge_kutta_4(f, x, y_initial);
-disp('Runge-Kutta 4th Order Results:');
-disp(table(x', y_rk4', 'VariableNames', {'x', 'y'}));
-
-% =====================================================================
-% MIDPOINT METHOD
-% =====================================================================
-disp('--- Midpoint Method ---');
-[y_midpoint] = midpoint_method(f, x, y_initial);
-disp('Midpoint Method Results:');
-disp(table(x', y_midpoint', 'VariableNames', {'x', 'y'}));
-
-% =====================================================================
-% PLOTTING RESULTS
-% =====================================================================
-figure;
-plot(x, y_euler, '-o', 'DisplayName', 'Euler''s Method');
-hold on;
-plot(x, y_rk4, '-s', 'DisplayName', 'Runge-Kutta (4th Order)');
-plot(x, y_midpoint, '-^', 'DisplayName', 'Midpoint Method');
-xlabel('x');
-ylabel('y');
-title('Numerical Solutions to y'' = -2y, y(0) = -0.5');
-legend show;
-grid on;
-
-% =====================================================================
-% FUNCTION DEFINITIONS
-% =====================================================================
-
-% Euler's Method
-function y = euler_method(f, x, y0)
-    % Input: f - Function handle for ODE (dy/dx = f(x, y))
-    %        x - Array of x values
-    %        y0 - Initial condition y(x=0)
-    % Output: y - Numerical solution for each x
-    
-    y = zeros(1, length(x));
-    y(1) = y0;
-    h = x(2) - x(1);  % Step size
-    for i = 1:(length(x) - 1)
-        y(i + 1) = y(i) + h * f(x(i), y(i));  % Euler formula
-    end
+% ====================================================================
+% PART 1: Solving Differential Equations using Euler's Method
+% ====================================================================
+function y = euler_method(func, y0, h)
+    dydt = func(0, y0);
+    y = y0 + h * dydt;
 end
 
-% Runge-Kutta Method (4th Order)
-function y = runge_kutta_4(f, x, y0)
-    % Input: f - Function handle for ODE
-    %        x - Array of x values
-    %        y0 - Initial condition
-    % Output: y - Numerical solution for each x
-    
-    y = zeros(1, length(x));
-    y(1) = y0;
-    h = x(2) - x(1);  % Step size
-    for i = 1:(length(x) - 1)
-        k1 = h * f(x(i), y(i));
-        k2 = h * f(x(i) + h/2, y(i) + k1/2);
-        k3 = h * f(x(i) + h/2, y(i) + k2/2);
-        k4 = h * f(x(i) + h, y(i) + k3);
-        y(i + 1) = y(i) + (k1 + 2*k2 + 2*k3 + k4) / 6;  % RK4 formula
-    end
+% ====================================================================
+% PART 2A: Solving Differential Equations using Runge-Kutta Method (RK4)
+% ====================================================================
+function y = runge_kutta(func, y0, h)
+    k1 = func(0, y0);
+    k2 = func(0, y0 + 0.5 * h * k1);
+    k3 = func(0, y0 + 0.5 * h * k2);
+    k4 = func(0, y0 + h * k3);
+
+    y = y0 + (h / 6) * (k1 + 2 * k2 + 2 * k3 + k4);
 end
 
-% Midpoint Method
-function y = midpoint_method(f, x, y0)
-    % Input: f - Function handle for ODE
-    %        x - Array of x values
-    %        y0 - Initial condition
-    % Output: y - Numerical solution for each x
-    
-    y = zeros(1, length(x));
-    y(1) = y0;
-    h = x(2) - x(1);  % Step size
-    for i = 1:(length(x) - 1)
-        k1 = h * f(x(i), y(i));
-        k2 = h * f(x(i) + h/2, y(i) + k1/2);
-        y(i + 1) = y(i) + k2;  % Midpoint formula
-    end
+% ====================================================================
+% PART 3: Solving Differential Equations using Midpoint Method
+% ====================================================================
+function y = midpoint_method(func, y0, h)
+    k1 = func(0, y0);
+    y_mid = y0 + 0.5 * h * k1;
+    k2 = func(0, y_mid);
+
+    y = y0 + h * k2;
 end
 
+% ====================================================================
+% MAIN: Solve ODE using different methods, output solutions, and plot them
+% ====================================================================
+function main()
+    % Define the ODE: dy/dt = 3 * y
+    func = @(t, y) 3 * y;
 
+    % Parameters
+    y0 = 2;        % Initial condition
+    h = 0.1;       % Step size
+    n_steps = 10;  % Number of time steps
+    t = 0:h:(n_steps * h);  % Time vector
+
+    % Initialize solution arrays
+    y_euler = zeros(1, n_steps + 1);
+    y_rk = zeros(1, n_steps + 1);
+    y_mid = zeros(1, n_steps + 1);
+    
+    % Set initial conditions
+    y_euler(1) = y0;
+    y_rk(1) = y0;
+    y_mid(1) = y0;
+
+    % Solve using each method
+    for i = 1:n_steps
+        y_euler(i + 1) = euler_method(func, y_euler(i), h);
+        y_rk(i + 1) = runge_kutta(func, y_rk(i), h);
+        y_mid(i + 1) = midpoint_method(func, y_mid(i), h);
+    end
+
+    % Display results in the terminal
+    disp('Numerical solutions for dy/dt = 3y:');
+    disp('-----------------------------------');
+    disp(' Time      Euler       RK4      Midpoint ');
+    for i = 1:length(t)
+        fprintf('%6.2f   %8.4f   %8.4f   %8.4f\n', t(i), y_euler(i), y_rk(i), y_mid(i));
+    end
+
+    % Plot the solutions
+    figure;
+    plot(t, y_euler, 'r--', 'LineWidth', 1.5); hold on;
+    plot(t, y_rk, 'b-', 'LineWidth', 1.5);
+    plot(t, y_mid, 'g-.', 'LineWidth', 1.5);
+
+    % Customize the plot
+    title('Numerical Solutions for dy/dt = 3y');
+    xlabel('Time (t)');
+    ylabel('Solution (y)');
+    legend('Euler Method', 'Runge-Kutta Method (RK4)', 'Midpoint Method');
+    grid on;
+end
+
+% Call the main function
+main();

@@ -2,7 +2,8 @@
 File name: visualization.py
 Author: Troy Chin (CWID: 885586685)
 Date: 2024-11-11
-Version: 1.2
+Version: 1.3
+Status: Ready to deliver to customers. 
 Description: This script contains the graphical attributes and optimization attributes for the simulation.
 """
 
@@ -13,6 +14,7 @@ from matplotlib.animation import FuncAnimation
 class Visualization:
     
     def __init__(self, logger, pendulum, dt):
+        """Initialize graphical attributes of the visualization system."""
         self.logger = logger
         self.pendulum = pendulum
         self.dt = dt  # Store dt for use in update_plot
@@ -25,11 +27,13 @@ class Visualization:
         self.ax.grid()
 
     def init_plot(self):
+        """Initialize conditions of the graphical interface."""
         self.line1.set_data([], [])
         self.line2.set_data([], [])
         return self.line1, self.line2
     
     def update_plot(self, frame):
+        """Update the pendulum state per frame."""
         # Update the pendulum state for the current frame
         self.pendulum.step(self.dt)  # Update the pendulum's state
     
@@ -62,6 +66,7 @@ class Visualization:
         return self.line1, self.line2
 
     def animate(self, frames):
+        """Begin animation for the pendulum system."""
         # Initialize the plot before starting the animation
         self.init_plot()
     
@@ -78,6 +83,7 @@ class Visualization:
         plt.show()
             
     def plot_angles_and_velocities(self, t_max, dt, angles1, angles2, velocities1, velocities2):
+        """Plot angles and velocities of the pendulum system."""
         plt.figure(figsize=(12, 8))  # Adjusted size
 
         # Plot angles

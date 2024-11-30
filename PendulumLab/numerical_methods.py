@@ -9,16 +9,20 @@ Description: This script contains the numerical methods implemented in this lab.
 
 # Import numerical methods here.
 
+import matplotlib.pyplot as plt
+
 class NumericalMethods:
     
     def __init__(self, dt=0.01):
         self.dt = dt
 
     def euler_method(self, func, y0):
+        """Function for solving ODEs using Euler's Method."""
         dydt = func(0, y0)
         return [yi + self.dt * dyi for yi, dyi in zip(y0, dydt)]
 
     def runge_kutta(self, func, y0):
+        """Function for solving ODEs using Runge-Kutta Method (of Order 4)."""
         k1 = func(0, y0)
         k2 = func(0, [yi + 0.5 * self.dt * k1i for yi, k1i in zip(y0, k1)])
         k3 = func(0, [yi + 0.5 * self.dt * k2i for yi, k2i in zip(y0, k2)])
@@ -26,6 +30,7 @@ class NumericalMethods:
         return [yi + (self.dt / 6) * (k1i + 2 * k2i + 2 * k3i + k4i) for yi, k1i, k2i, k3i, k4i in zip(y0, k1, k2, k3, k4)]
 
     def adaptive_runge_kutta(self, func, y0, tolerance=1e-6):
+        """Function for solving ODEs using Adaptive Runge-Kutta Method."""
         h = self.dt
         y = y0
         error = tolerance + 1
@@ -50,6 +55,7 @@ class NumericalMethods:
         return y
 
     def midpoint_method(self, func, y0):
+        """Function for solving ODEs using the Midpoint Method."""
         dydt = func(0, y0)
         y_mid = [yi + 0.5 * self.dt * dyi for yi, dyi in zip(y0, dydt)]
         dydt_mid = func(0, y_mid)
@@ -66,3 +72,51 @@ class NumericalMethods:
             return self.midpoint_method(func, y0)
         else:
             raise ValueError("Unknown method. Choose 'euler', 'runge_kutta', 'adaptive_runge_kutta', or 'midpoint'.")
+
+#Example implementation            
+
+def main():
+    def simple_ode(t, y):
+        """Simple linear ODE."""
+        return [3 * yi for yi in y]
+    
+    # Create an instance of NumericalMethods
+    nm = NumericalMethods(dt=0.1)
+    y0 = [1.0]  # Initial condition
+    time_steps = 10  # Number of time steps
+    methods = ['euler', 'runge_kutta', 'adaptive_runge_kutta', 'midpoint']  # List of methods to solve ODE
+
+    # List to store solutions for each method
+    solutions = {method: [y0] for method in methods}
+    
+    # Solve the ODE for each method
+    for i in range(time_steps):
+        for method in methods:
+            y_next = nm.solve_ode(simple_ode, solutions[method][-1], method=method)
+            solutions[method].append(y_next)
+
+            # Print the solution at each step for each method
+            print(f"Method: {method}, Step {i}: {y_next}")
+    
+    # Print final results for each method
+    for method in methods:
+        print(f"Final solution for {method} after {time_steps} steps: {solutions[method][-1]}")
+
+    # Plot the results for each method
+    times = [i * nm.dt for i in range(time_steps + 1)]  # Time array
+    plt.figure(figsize=(10, 6))
+
+    for method in methods:
+        solution_values = [result[0] for result in solutions[method]]  # Extract the first (and only) element of each result
+        plt.plot(times, solution_values, label=f'{method.capitalize()} Solution')
+
+    plt.xlabel('Time')
+    plt.ylabel('Solution (y)')
+    plt.title('ODE Solutions over Time for Different Methods')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+if __name__ == '__main__':
+    main()
+
