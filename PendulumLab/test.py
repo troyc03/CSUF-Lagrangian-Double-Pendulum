@@ -1,7 +1,7 @@
 """
 File name: test.py
 Author: Troy Chin (CWID: 885586685)
-Date: 2024-11-10
+Date: 2024-12-01
 Version: 1.0
 Description: Unit tests for the double pendulum simulation components.
 """
@@ -99,9 +99,6 @@ class TestNumericalMethods(unittest.TestCase):
             )
         expected = [self.initial_state[0] * np.exp(-self.dt)] #Analytical solution
         self.assertAlmostEqual(result[0], expected[0], delta=1e-6)
-
-class TestVisualization(unittest.TestCase):
-    pass
         
 if __name__ == '__main__':
     unittest.main()

@@ -101,6 +101,7 @@ class Visualization:
         plt.plot(np.arange(0, t_max, dt), velocities2, label='Angular Velocity 2')
         plt.xlabel('Time (s)')
         plt.ylabel('Angular Velocity (rad/s)')
+        plt.legend()
         
     def plot_phase_space(self):
         """

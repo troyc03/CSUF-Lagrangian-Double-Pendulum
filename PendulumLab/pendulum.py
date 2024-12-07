@@ -100,7 +100,6 @@ class DoublePendulum:
         """Calculate the net energy of the system."""
         return self.kinetic_energy() + self.potential_energy()
     
-    
     def reset(self):
         """Reset the conditions of the system back to zero."""
         self.initial_conditions(0, 0, 0, 0)  # Reset to default initial conditions
