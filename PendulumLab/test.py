@@ -11,6 +11,7 @@ import numpy as np
 from numerical_methods import NumericalMethods
 from data_logger import DataLogger
 from pendulum import DoublePendulum
+from visualization import Visualization
 
 #Import any test models here.
 
@@ -99,6 +100,57 @@ class TestNumericalMethods(unittest.TestCase):
             )
         expected = [self.initial_state[0] * np.exp(-self.dt)] #Analytical solution
         self.assertAlmostEqual(result[0], expected[0], delta=1e-6)
+        
+
+class MockLogger:
+    def __init__(self):
+        self.data = []
+        
+class TestVisualization(unittest.TestCase):
+
+    def setUp(self):
+        # Initialize parameters for the double pendulum
+        self.mass1 = 1.0
+        self.mass2 = 1.0
+        self.length1 = 1.0
+        self.length2 = 1.0
+        self.angle1 = np.pi / 4  # 45 degrees
+        self.angle2 = np.pi / 6  # 30 degrees
+        self.velocity1 = 0.0
+        self.velocity2 = 0.0
+        self.g = 9.81
+        self.dt = 0.01
+        
+        self.pendulum = DoublePendulum(
+            self.mass1, self.mass2, self.length1, self.length2,
+            self.angle1, self.angle2, self.velocity1, self.velocity2, self.g
+        )
+        
+        self.logger = MockLogger()
+        
+    def test_visualization_initialization(self):
+        try:
+            vis = Visualization(self.logger, self.pendulum, self.dt)
+        except ImportError:
+            self.fail("ERROR: Failed to import Visualization module.")
+        except Exception as e:
+            self.fail(f"ERROR: The following exception was raised: {e}.")
+
+    def test_plot_static(self):
+        """Test static plot functionality."""
+        try:
+            vis = Visualization(self.logger, self.pendulum, self.dt)
+            vis.plot_angles_and_velocities(10, self.dt, [0.1]*1000, [0.2]*1000, [0.3]*1000,[0.4]*1000)
+        except Exception as e:
+            self.fail(f"ERROR: Static plotting raised an exception: {e}.")
+    
+    def test_create_animation(self):
+        """Test animation functionality."""
+        try:
+            vis = Visualization(self.logger, self.pendulum, self.dt)
+            vis.animate(frames=100)
+        except Exception as e:
+            self.fail(f"ERROR: Animation creation raised an exception: {e}.")
         
 if __name__ == '__main__':
     unittest.main()
