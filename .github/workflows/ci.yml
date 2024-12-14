@@ -35,3 +35,17 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # Exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Configure AWS CLI
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+    - name: Deploy README to S3
+      run: |
+        PROJECT_DESCRIPTION="Lagrangian-Double-Pendulum"
+        TARGET_FILE="README-${PROJECT_DESCRIPTION}.md"
+        cp README.md $TARGET_FILE
+        aws s3 cp $TARGET_FILE s3://csuf-cpsc-362/
