@@ -2,7 +2,8 @@
 File name: test.py
 Author: Troy Chin (CWID: 885586685)
 Date: 2024-12-01
-Version: 1.0
+Version: 1.3
+Status: Ready to deliver to customers
 Description: Unit tests for the double pendulum simulation components.
 """
 
