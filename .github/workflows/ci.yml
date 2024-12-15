@@ -42,8 +42,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-
-    - run: echo "CI completed with status - status WIP"
+    - run: echo "CI complete!"
 
 
 
