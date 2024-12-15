@@ -41,5 +41,54 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+name: Upload README to S3
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4  # Checkout the repository
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.12
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install flake8
+          python -m pip install -r requirements.txt
+      - name: Lint with flake8
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      # Step to process and upload the README
+      - name: Process and Upload README to S3
+        run: |
+          DESCRIPTION="CSUF_Lagrangian_Double_Pendulum_And_Numerical_Analysis_Lab"  # Unique description
+          
+          # Navigate to the correct directory
+          cd PendulumLab  # This is where README.md is located in your repo
+          
+          # Copy README.md with a new name
+          cp README.md "README_$DESCRIPTION.md"
+          
+          # Upload the renamed README to the S3 bucket
+          aws s3 cp "README_$DESCRIPTION.md" s3://csuf-cpsc-362
+          echo "Upload complete"
+
+      - run: echo "CI complete"
 
 
