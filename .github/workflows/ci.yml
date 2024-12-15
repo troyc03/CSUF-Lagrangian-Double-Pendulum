@@ -1,6 +1,3 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
 name: Python package
 
 on:
@@ -11,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -20,35 +16,47 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install flake8 
+        python -m pip install flake8
         python -m pip install -r requirements.txt
+
     - name: Lint with flake8
       run: |
         # Stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # Exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
-        
+
     - name: Upload README to S3 Pipeline
-      working-directory: ./CSUF-Lagrangian-Double-Pendulum
       run: |
+        # Define a unique description for the file
         DESCRIPTION="CSUF_Lagrangian_Double_Pendulum_And_Numerical_Analysis_Lab"
-        cp README.md "README_$DESCRIPTION.md"
-        aws cp "README_$DESCRIPTION.md" s3://csuf-cpsc-362
+        
+        # Ensure the working directory is correct
+        if [ -d "./CSUF-Lagrangian-Double-Pendulum" ]; then
+          cd ./CSUF-Lagrangian-Double-Pendulum
+        else
+          echo "Directory not found: ./CSUF-Lagrangian-Double-Pendulum" && exit 1
+        fi
+        
+        # Copy and upload README
+        cp README.md "README_${DESCRIPTION}.md"
+        aws s3 cp "README_${DESCRIPTION}.md" s3://csuf-cpsc-362
         echo "Upload complete!"
 
     - run: echo "CI complete"
-      
