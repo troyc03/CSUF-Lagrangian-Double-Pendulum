@@ -55,7 +55,7 @@ This lab explores the motion of a double pendulum using the principles of Lagran
    ```bash
    spyder
 
-## Kanban Board (Updated December 14, 2024)
+## Kanban Board
 
 ![image](https://github.com/user-attachments/assets/e0ebe1a3-549f-4012-8e76-0b4ffcb5ed3f)
 
