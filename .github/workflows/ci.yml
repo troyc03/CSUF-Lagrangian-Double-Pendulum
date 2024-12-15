@@ -42,15 +42,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-    - name: Process and Upload README to S3
-      working-directory: ./CSUF-Lagrangian-Double-Pendulum
-      run: |
-         DESCRIPTION="CSUF_Double_Pendulum_Lab"  # Using underscores instead of spaces
-         echo "Copying README with new name..."
-         cp README.md "README_$DESCRIPTION.md"
-         echo "Uploading to S3..."
-         aws s3 cp "README_$DESCRIPTION.md" s3://csuf-cpsc-362
-         echo "Upload complete"
 
     - run: echo "CI completed with status - status WIP"
 
