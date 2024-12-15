@@ -35,3 +35,20 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # Exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+        
+    - name: Upload README to S3 Pipeline
+      working-directory: ./CSUF-Lagrangian-Double-Pendulum
+      run: |
+        DESCRIPTION="CSUF_Lagrangian_Double_Pendulum_And_Numerical_Analysis_Lab"
+        cp README.md "README_$DESC.md"
+        aws cp "README_$DESC.md" s3://csuf-cpsc-362
+        echo "Upload complete!"
+
+    - run: echo "CI complete"
+      
