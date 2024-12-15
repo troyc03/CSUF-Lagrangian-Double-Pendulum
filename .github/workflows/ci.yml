@@ -46,8 +46,8 @@ jobs:
       working-directory: ./CSUF-Lagrangian-Double-Pendulum
       run: |
         DESCRIPTION="CSUF_Lagrangian_Double_Pendulum_And_Numerical_Analysis_Lab"
-        cp README.md "README_$DESC.md"
-        aws cp "README_$DESC.md" s3://csuf-cpsc-362
+        cp README.md "README_$DESCRIPTION.md"
+        aws cp "README_$DESCRIPTION.md" s3://csuf-cpsc-362
         echo "Upload complete!"
 
     - run: echo "CI complete"
