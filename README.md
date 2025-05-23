@@ -230,9 +230,8 @@ UML Swimlane Diagram
 
 ## To-Do Items
 
-- Reimplement code into MATLAB (or integrate MATLAB API to Python if possible)
-- Implement unit and integration testing to the Python laboratory to account for miscalculations and error handling in case MATLAB is not integrated correctly.
-- Continuously perform integration testing and unit testing to make sure that all components in the lab are running properly.
+- Incorporating error propagation analysis for a more rigorous uncertainty estimate.
+- Implementing a curve fitting/regression analysis routine to compare theoretical data to the expected data.
 
 #### Credits
 Troy Chin (Kanban Team Leader/Head DevOps Coordinator)
